@@ -1,46 +1,11 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-## 企業に見てもらうREADMEを作成
-
-
-#READMEに記載する内容
-・アプリケーション名、簡潔な概要、アプリケーションURL
-・動作がわかる画像や動画
-・詳細な説明
-・使っている言語やフレームワークのバージョン
-**Rails version:** 6.1.7.8
-**Ruby version:** ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
-・環境構築に必要な手順
-・インフラ、フロント、トップそれぞれの技術選定
-・実装した機能
-・設計書
-・使用方法
-・作者（アカウント）
-
+<!--#READMEに記載する内容-->
+<!--・アプリケーション名、簡潔な概要、アプリケーションURL-->
+<!--・動作がわかる画像や動画-->
+<!--・環境構築に必要な手順-->
+<!--・インフラ、フロント、トップそれぞれの技術選定-->
+<!--・実装した機能-->
+<!--・使用方法-->
+<!--・作者（アカウント）-->
 # RunBuddy
 
 ## サイト概要
@@ -75,6 +40,9 @@ Things you may want to cover:
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+-
+**Rails version:** 6.1.7.8
+**Ruby version:** ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
 ​
 ## 使用素材
 著作権を考慮し、架空のデータを扱う予定です。
