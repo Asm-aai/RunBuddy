@@ -1,2 +1,31 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+<div class="bg-image" style="background-image: url('<%= asset_path("yuta_240513_040.jpg") %>'); background-size: cover; background-position: center; height: 100vh;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">
+        <h1 class="my-5" style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">RunBuddyについて</h1><br>
+
+        <h3 class="mt-4" style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">私たちの目的</h3>
+        <p style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">
+          RunBuddyは、愛犬と一緒に過ごすための素晴らしいドッグラン情報を提供することを目的としています。私たちは、全国のドッグランの情報を集め、飼い主さんたちが愛犬との楽しい時間を過ごせる場所を見つけられるようにサポートします。
+        </p>
+
+        <h3 class="mt-4" style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">私たちのビジョン</h3>
+        <p style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">
+          私たちは、愛犬と飼い主が共に楽しめる場所を見つける手助けをし、愛犬とのお出かけがもっと楽しく、快適になることを目指しています。
+        </p>
+
+        <h3 class="mt-4" style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">どうやって利用するか</h3>
+        <p style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">
+          RunBuddyでは、ユーザーがドッグランの情報を簡単に検索できるよう、地図機能やフィルター機能を搭載しています。お気に入りのドッグランを見つけたら、ぜひレビューを投稿してください。
+        </p>
+
+        <h3 class="mt-4" style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">お問い合わせ</h3>
+        <p style="background-color: rgba(255, 255, 255, 0.8); display: inline-block; font-family: 'Mochiy Pop One', sans-serif;">
+          ご意見やご質問がある方は、お気軽にお問い合わせください。あなたのフィードバックが私たちのサービス向上につながります。
+        </p>
+
+        <%= link_to 'ドッグラン一覧へ戻る', about_path, class: 'btn btn-danger my-5' %>
+      </div>
+    </div>
+  </div>
+</div>
