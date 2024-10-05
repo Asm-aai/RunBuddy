@@ -9,25 +9,23 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
 
-        <% if customer_signed_in? %>
+        <% if user_signed_in? %>
           <ul>
-            <li class="nav-link"><%= link_to "About", about_path, class: 'nav-link text-light' %></li>
-            <li class="nav-link"><%= link_to "投稿一覧(仮)", "/", class: 'nav-link text-light' %></li>
-            <li class="nav-link"><%= link_to "マイページ(仮)", "/", class: 'nav-link text-light' %></li>
-            <li class="nav-link"><%= link_to "ブックマーク(仮)", "/", class: 'nav-link text-light' %></li>
-            <li class="nav-link"><%= link_to "新規投稿(仮)", "/", class: 'nav-link text-light' %></li>
-            <li class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, class: 'nav-link text-light' %></li>
+            <li class="nav-link"><%= link_to "About", about_path, class: 'text-light' %></li>
+            <li class="nav-link"><%= link_to "投稿一覧(仮)", "/", class: 'text-light' %></li>
+            <li class="nav-link"><%= link_to "マイページ(仮)", "/", class: 'text-light' %></li>
+            <li class="nav-link"><%= link_to "ブックマーク(仮)", "/", class: 'text-light' %></li>
+            <li class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'text-light' %></li>
             <p>検索窓（仮）</p>
           </ul>
-          
-
-
+        <% else %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-link"><%= link_to "About", about_path, class: 'nav-link text-light' %></li>
           <li class="nav-link"><%= link_to "投稿一覧(仮)", "/", class: 'nav-link text-light' %></li>
           <li class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %></li>
           <li class="nav-link"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %></li>
         </ul>
+        <% end %>
       </div>
     </div>
   </nav>
