@@ -1,24 +1,34 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <!--if customer_signed_in? %>-->
-    <div class="container">
-      <a class="navbar-brand font-weight-bold" href="/" ><span style="font-family: 'Rampart One', sans-serif;">RunBuddy</span></a>
+    <div class="container custom-font">
+      <a class="navbar-brand font-weight-bold custom-font" href="/" ><span>RunBuddy</span></a>
       <button class="navbar-toggler" type="button" date-toggle="collapse" data-torget="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+
+        <% if customer_signed_in? %>
+          <ul>
+            <li class="nav-link"><%= link_to "About", about_path, class: 'nav-link text-light' %></li>
+            <li class="nav-link"><%= link_to "投稿一覧(仮)", "/", class: 'nav-link text-light' %></li>
+            <li class="nav-link"><%= link_to "マイページ(仮)", "/", class: 'nav-link text-light' %></li>
+            <li class="nav-link"><%= link_to "ブックマーク(仮)", "/", class: 'nav-link text-light' %></li>
+            <li class="nav-link"><%= link_to "新規投稿(仮)", "/", class: 'nav-link text-light' %></li>
+            <li class="nav-link"><%= link_to "ログアウト", destroy_user_session_path, class: 'nav-link text-light' %></li>
+            <p>検索窓（仮）</p>
+          </ul>
+          
+
+
         <ul class="navbar-nav ml-auto">
-          <li class="nav-link">
-            <%= link_to "About", about_path,class: 'nav-link text-light' %>
-          </li>
-          <li class="nav-link">
-            <%= link_to "新規登録(仮)", "/",class: 'nav-link text-light' %>
-          </li>
-          <li class="nav-link">
-            <%= link_to "ログイン(仮)", "/",class: 'nav-link text-light' %>
-          </li>
+          <li class="nav-link"><%= link_to "About", about_path, class: 'nav-link text-light' %></li>
+          <li class="nav-link"><%= link_to "投稿一覧(仮)", "/", class: 'nav-link text-light' %></li>
+          <li class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %></li>
+          <li class="nav-link"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %></li>
         </ul>
       </div>
     </div>
-  </nav><!---->
+  </nav>
 </header>

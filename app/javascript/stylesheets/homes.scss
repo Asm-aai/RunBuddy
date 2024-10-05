@@ -1,0 +1,28 @@
+.top1 {
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  font-family: 'Rampart One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  margin: 1rem 0;
+  padding: 0.25rem 0;
+
+  span {
+    color: #ff0000;
+    font-weight: bold;
+  }
+}
+
+.about1 {
+  font-family: 'Mochiy Pop One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-top: 2rem;
+}
+
+.about1-topM {
+  margin-top: 0.5rem;
+}
