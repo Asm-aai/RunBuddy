@@ -20,8 +20,10 @@
         <h5 class="top1">
           RunBuddyで、愛犬とのお出かけがもっと楽しく、もっと快適になりますよ！
         </h5>
-        <div class="text-center my-4">
-          <%= link_to 'ドッグラン一覧を見る', about_path, class: 'btn btn-danger', style: "font-family: 'Rampart One', sans-serif;" %>
+        <div class="d-grid gap-2 col-3 mx-auto my-4">
+
+          <%= link_to 'ドッグラン一覧を見る', about_path, class: 'btn btn-danger top2' %><br>
+          <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, class: "btn btn-danger mt-3 top2", method: :post %>
         </div>
       </div>
     </div>
