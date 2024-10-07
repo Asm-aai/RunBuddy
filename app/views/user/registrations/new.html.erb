@@ -7,6 +7,12 @@
         <%= render "user/shared/error_messages", resource: resource %>
 
         <div class="field my-3">
+          名前<br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        </div>
+
+
+        <div class="field my-3">
           メールアドレス<br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
