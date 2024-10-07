@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 posts1 my-3">
+      <h2>ドッグラン一覧</h2>
+    </div>
+
+    <div class="row posts1">
+      <!-- 目次を左側に表示 -->
+      <div class="col-md-3">
+        <h3>目次</h3>
+        <div class="card p-3">
+          <% posts.each do |post| %>
+            <%= link_to post.title, "#post-#{post.id}", class: "d-block mb-2" %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- カード一覧を右側に表示 -->
+      <div class="col-md-9 d-flex flex-wrap justify-content-center">
+        <% posts.each do |post| %>
+          <div class="card mx-2 p-1 mb-4" id="post-<%= post.id %>" style="width: 50rem;">
+            <%= image_tag post.get_image, class: "img-thumbnail card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              <p class="card-text"><%= post.introduction %></p>
+              <%= link_to "詳細", post_path(post.id), class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

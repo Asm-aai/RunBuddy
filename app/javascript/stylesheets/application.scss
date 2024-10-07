@@ -1,5 +1,12 @@
 @use '~bootstrap/scss/bootstrap';
 @import 'homes';
+@import 'posts';
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 
 .custom-font {
   font-family: 'Rampart One', sans-serif;
