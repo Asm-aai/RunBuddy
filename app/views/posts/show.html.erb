@@ -1,19 +1,19 @@
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 posts1 my-3">
       <h2 class="text-center display-4">ドッグラン詳細</h2>
     </div>
-    <div class="row">
-      <div class="col-md-6 d-flex justify-content-center mb-5">
-        <%= image_tag @post.get_image, class: "img-thumbnail shadow-lg" %>
-      </div>
-      <div class="col-md-6 posts1 mb-5">
-        <p><i class="fas fa-map-marker-alt"></i> <strong>住所：</strong> <%= @post.address %></p>
-        <p><i class="fas fa-link text-primary"></i><a href="<%= @post.hp %>" target="_blank"><%= @post.hp %></a></p>
-        <p><i class="fas fa-info-circle"></i> <strong>紹介文：</strong> <%= @post.introduction %></p>
-      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center mb-5">
+      <%= image_tag @post.get_image, class: "img-thumbnail shadow-lg" %>
+    </div>
+    <div class="col-md-6 posts1 mb-5">
+      <p> <strong>名称：</strong> <%= @post.title %></p>
+      <p><i class="fas fa-map-marker-alt"></i> <strong>住所：</strong> <%= @post.address %></p>
+      <p><i class="fas fa-link text-primary"></i><a href="<%= @post.hp %>" target="_blank"><%= @post.hp %></a></p>
+      <p><i class="fas fa-info-circle"></i> <strong>紹介文：</strong> <%= @post.introduction %></p>
     </div>
   </div>
 </div>
