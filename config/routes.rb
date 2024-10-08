@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions',
   }
 
-
   devise_for :users, controllers: {
     sessions: 'user/sessions',
     registrations: 'user/registrations',

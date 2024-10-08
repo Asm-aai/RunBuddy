@@ -14,6 +14,8 @@
       <p><i class="fas fa-map-marker-alt"></i> <strong>住所：</strong> <%= @post.address %></p>
       <p><i class="fas fa-link text-primary"></i><a href="<%= @post.hp %>" target="_blank"><%= @post.hp %></a></p>
       <p><i class="fas fa-info-circle"></i> <strong>紹介文：</strong> <%= @post.introduction %></p>
+      <p><strong>投稿者：</strong><%= @post.user.name %></p>
+      <p><%= link_to @post.user.name, user_path(@post_user) %></p>
     </div>
   </div>
 </div>
