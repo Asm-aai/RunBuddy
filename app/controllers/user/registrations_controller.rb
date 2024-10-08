@@ -4,7 +4,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
   # GET /resource/sign_up
   # def new
   #   super
@@ -28,6 +27,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   # def destroy
   #   super
+  #   redirect_to new_user_registration_path, notice: "アカウントが削除されました。"
   # end
 
   # GET /resource/cancel
@@ -60,6 +60,13 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def destroy
+    super do
+      redirect_to new_user_registration_path and return
+    end
+  end
+
 
   protected
   def configure_permitted_parameters

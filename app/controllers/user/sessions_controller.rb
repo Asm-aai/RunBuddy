@@ -29,9 +29,7 @@ class User::SessionsController < Devise::SessionsController
     my_page_path
   end
 
-# 後ほど変更が必要。
   def after_sign_out_path_for(resource)
     about_path
   end
-
 end
