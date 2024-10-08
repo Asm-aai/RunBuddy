@@ -3,12 +3,15 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admin/sessions',
   }
-  # resources :users, only: [:new, :show, :index, :edit, :update, :destroy]
+
+
   devise_for :users, controllers: {
     sessions: 'user/sessions',
     registrations: 'user/registrations',
     passwords: 'user/passwords',
   }
+  resources :users, only: [:show], controller: 'user_application'
+
   get '/' => 'homes#top'
   get '/about' => 'homes#about'
   get '/my_page' => 'user_application#my_page'
