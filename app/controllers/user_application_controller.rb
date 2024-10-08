@@ -1,5 +1,6 @@
 class UserApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top, :about, :show]
+
   layout 'application'
 
   def my_page
@@ -10,4 +11,5 @@ class UserApplicationController < ActionController::Base
     @user = User.find(params[:id])
     @posts = @user.posts
   end
+
 end

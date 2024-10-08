@@ -6,16 +6,19 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6 d-flex justify-content-center mb-5">
+    <div class="col-md-6 d-flex justify-content-center my-3">
       <%= image_tag @post.get_image, class: "img-thumbnail shadow-lg" %>
     </div>
-    <div class="col-md-6 posts1 mb-5">
-      <p> <strong>名称：</strong> <%= @post.title %></p>
+    <div class="col-md-6 posts1 mt-10 my-auto">
+      <p><i class="fa-solid fa-marker"></i> <strong>名称：</strong> <%= @post.title %></p>
+      <hr>
       <p><i class="fas fa-map-marker-alt"></i> <strong>住所：</strong> <%= @post.address %></p>
+      <hr>
       <p><i class="fas fa-link text-primary"></i><a href="<%= @post.hp %>" target="_blank"><%= @post.hp %></a></p>
+      <hr>
       <p><i class="fas fa-info-circle"></i> <strong>紹介文：</strong> <%= @post.introduction %></p>
-      <p><strong>投稿者：</strong><%= @post.user.name %></p>
-      <p><%= link_to @post.user.name, user_path(@post_user) %></p>
+      <hr>
+      <p><i class="fa-solid fa-user"></i> <strong>投稿者：<%= link_to @post.user.name, user_path(@post_user) %></strong></p>
     </div>
   </div>
 </div>

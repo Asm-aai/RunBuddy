@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+
   def show
     @user = User.find(pasams[:id])
   end
@@ -7,4 +8,5 @@ class Users::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to my_page_path, notice: "guestuserでログインしました。"
   end
+
 end
