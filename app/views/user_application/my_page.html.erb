@@ -1,28 +1,4 @@
 <div class="container posts1">
-  <div class="row">
-    <div class="col">
-      <h2 class="my-3">ユーザー情報</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>ユーザー名</th>
-            <th>メールアドレス</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= current_user.name %></td>
-            <td><%= current_user.email %></td>
-            <td><%= link_to "編集", edit_user_registration_path, class: "btn btn-success" %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%= render 'posts/list', posts: @my_posts %>
-    </div>
-  </div>
+  <%= render 'user/shared/show', user: current_user %>
+  <%= render 'posts/list', posts: @my_posts %>
 </div>

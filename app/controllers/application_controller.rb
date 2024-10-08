@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!, except: [:top, :index, :about]
-  # before_action :authenticate_admin!, except: [:top]
-# 記述はここだと全てに反映される、どこに記述しないいけいか要確認
+  before_action :ensure_guest_user, only: [:edit]
+
+
+  private
+  def ensure_guest_user
+    if current_user.email == "guest@example.com"
+      redirect_to my_page_path , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end
 end

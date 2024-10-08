@@ -2,6 +2,16 @@
   <div class="row justify-content-center">
     <div class="col-md-8 mt-5 posts1">
       <h1 class="text-center">投稿編集</h1>
+      <% if @post.errors.any? %>
+        <div class="alert alert-danger">
+          <h4>エラーが発生しました:</h4>
+          <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <div class="mb-4">
       <%= form_with model: @post do |f| %>
       <div class="form-group">
@@ -29,12 +39,6 @@
         </div>
         <div class="form-group my-5">
           <%= f.submit '保存', class: 'btn btn-primary btn-block' %>
-        </div>
-
-        <div class="form-group my-5">
-          <% if @post.user_id == current_user.id %>
-            <%= link_to "削除", post_path, method: :delete, class: "btn btn-danger btn-block" %>
-          <% end %>
         </div>
       <% end %>
     </div>
