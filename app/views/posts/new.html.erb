@@ -4,6 +4,16 @@
       <h1 class="text-center">新規投稿</h1>
       <div class="mb-4">
       <%= form_with model: @post do |f| %>
+        <% if @post.errors.any? %>
+          <div class="alert alert-danger">
+            <h4>以下のエラーがあります：</h4>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       <div class="form-group">
         <p>画像</p>
         <%= f.file_field :image, accept: "image/*", class: 'form-control-file' %>
