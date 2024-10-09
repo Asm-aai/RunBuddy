@@ -7,9 +7,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.text :hp, null: false
       t.text :introduction, null: false
       t.references :user, null: false, foreign_key: { on_update: :cascade, on_delete: :cascade }
-
       t.timestamps
     end
-    add_index :posts, [:title, :introduction]
+    add_index :posts, [:title, :introduction], length: { introduction: 255 }
   end
 end
