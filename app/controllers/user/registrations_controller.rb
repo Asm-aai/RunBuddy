@@ -2,6 +2,7 @@
 
 class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   # GET /resource/sign_up
@@ -67,6 +68,10 @@ class User::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def after_update_path_for(resource)
+    my_page_path
+  end
+
 
   protected
   def configure_permitted_parameters
@@ -77,4 +82,13 @@ class User::RegistrationsController < Devise::RegistrationsController
   def after_sign_in_path_for(resource)
     my_page_path
   end
+
+  private
+  def authorize_user!
+    @user = User.find(params[:format])
+    unless @user == current_user
+      redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
+    end
+  end
+
 end

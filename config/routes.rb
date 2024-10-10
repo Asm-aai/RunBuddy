@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:show], controller: 'user_application'
 
-  get '/' => 'homes#top'
   get '/about' => 'homes#about'
   get '/my_page' => 'user_application#my_page'
   # resources :posts, only: [:show, :index, :edit, :update]
@@ -21,5 +20,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
+
+  root to: "homes#top"
 
 end

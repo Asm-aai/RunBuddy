@@ -38,7 +38,8 @@
           <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。' %>
         </div>
         <div class="form-group my-5">
-          <%= f.submit '保存', class: 'btn btn-primary btn-block' %>
+          <%= f.submit '保存', class: 'btn btn-primary btn-block mb-5' %>
+          <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-block" %>
         </div>
       <% end %>
     </div>

@@ -1,6 +1,7 @@
 class PostsController < UserApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -22,7 +23,6 @@ class PostsController < UserApplicationController
     else
       render :edit
     end
-
   end
 
   def index
@@ -38,7 +38,7 @@ class PostsController < UserApplicationController
 
   def destroy
     @post.delete
-    redirect_to posts_path
+    redirect_to my_page_path
   end
 
   private
@@ -47,9 +47,9 @@ class PostsController < UserApplicationController
   end
 
   def authorize_user
-  unless @post.user_id == current_user.id
-    redirect_back(fallback_location: posts_path, alert: "権限がありません。")
-  end
+    unless @post.user_id == current_user.id
+      redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
+    end
   end
 
   def set_post

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  validates :title, :address, :introduction, presence: true
+  validates :title, :address, :hp, :introduction, presence: true
+
   has_one_attached :image
   belongs_to :user
 
