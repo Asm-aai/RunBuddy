@@ -9,8 +9,7 @@
 # Admin.create!(email: "test@hoge.com", password: "testhoge")
 
 administrator = Admin.find_or_create_by!(email: "admin@example.com") do |admin|
-  admin.email = "admin@example.com"
-  admin.password = "password123"
+  admin.password = ENV['SECRET_KEY']
 end
 
 olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|

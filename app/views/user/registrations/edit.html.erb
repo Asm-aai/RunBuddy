@@ -21,7 +21,7 @@
         <% end %>
 
         <div class="form-group">
-        　<label>新しいパスワード<i>(変更したくない場合は空白のままにしてください)</i></label>
+          <label>新しいパスワード<i>(変更したくない場合は空白のままにしてください)</i></label>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
           <% if @minimum_password_length %>
             <small class="form-text text-muted"><%= @minimum_password_length %>文字以上</small>
