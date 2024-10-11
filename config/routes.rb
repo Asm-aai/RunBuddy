@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/search'
   resources :posts
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admin/sessions',
