@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <h2>レビュー一覧</h2>
+  <p>コメント数：<%= @post.comments.count %></p>
+  <div class="row">
+    <% @comments.each do |comment| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <%= comment.user.name %>
+              <span class="float-end"> 総合評価：
+              <!--デザイン確認すること-->
+                <%= comment.total_star %> 
+              </span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    <% end %>
+  </div>
+</div>
