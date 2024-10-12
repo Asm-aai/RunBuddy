@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comment: MyText
+  total_star: MyString
+  extent_star: MyString
+  clean_star: MyString
+  amenity_star: MyString
+  safety: MyString
+  cost_star: MyString
+
+two:
+  comment: MyText
+  total_star: MyString
+  extent_star: MyString
+  clean_star: MyString
+  amenity_star: MyString
+  safety: MyString
+  cost_star: MyString
