@@ -18,6 +18,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= post.title %></h5>
             <p class="card-text"><%= post.introduction %></p>
+            <p class="card-text">コメント数：<%= post.comments.count %></p>
             <%= link_to "詳細", post_path(post.id), class: "btn btn-primary" %>
           </div>
         </div>

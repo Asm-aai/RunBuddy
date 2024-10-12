@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'search' => 'searches#search'
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admin/sessions',
   }
@@ -14,7 +17,6 @@ Rails.application.routes.draw do
 
   get '/about' => 'homes#about'
   get '/my_page' => 'user_application#my_page'
-  # resources :posts, only: [:show, :index, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 
