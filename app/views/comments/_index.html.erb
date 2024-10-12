@@ -3,7 +3,7 @@
   <p>コメント数：<%= post.comments.count %></p>
   <div class="row">
     <% post.comments.each do |comment| %>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-12 mb-4">
         <div class="card">
           <div class="card-body">
             <div class="card-title">
@@ -18,7 +18,7 @@
                   <!--i class="far fa-star text-warning"></i>-->
                 <!--% end %>-->
               </span>
-              <p class="card-text"><%= book.comment %></p>
+              <p class="card-text"><%= comment.comment %></p>
               <p class="card-text">
                 <small class="text-muted">投稿日：<%= comment.created_at.strftime("%Y/%m/%d") %></small>
               </p>
@@ -33,9 +33,10 @@
     <div class="col-md-8 justify-content-center">
       <%= form_with model: [post, comment] do |f| %>
         <div class="form-group">
-          <%= f.text_area :comment, rows: '5', placedolder: "コメントをここに" %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
         </div>
-        <%= f.submit "送信" %>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.submit "送信", class: "btn btn-primary" %>
 
       <% end %>
     </div>
