@@ -1,0 +1,36 @@
+<div class="container my-4 posts1">
+  <h2 class="text-center mb-4">検索結果</h2>
+  <div class="mb-5">
+    <h3 class="mb-3">投稿検索一覧</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ドッグラン名</th>
+          <th>紹介文</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= image_tag post.get_image %></td>
+            <td><%= link_to post.title, post_path(post), class: 'text-primary' %></td>
+            <td><span class="text-muted"> - <%= post.introduction %></span></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3 class="mb-3">ユーザー検索結果一覧</h3>
+    <% @users.each do |user| %>
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to user.name, user_path(user), class: 'text-primary', style: 'font-size: 24px;' %>
+          </h5>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
