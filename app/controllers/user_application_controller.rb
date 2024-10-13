@@ -1,6 +1,7 @@
 class UserApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top, :about]
   before_action :authorize_user, only: [:edit, :update, :destroy]
+  before_action :ensure_guest_user, only: [:my_page]
 
   layout 'application'
 
@@ -17,6 +18,13 @@ class UserApplicationController < ActionController::Base
   def authorize_user
     unless params(:id).to_i == current_user.id
       redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
+    end
+  end
+
+  def ensure_guest_user
+    if current_user.guest_user?
+      flash[:notice] = "ゲストユーザーはプロフィール画面へ遷移できません。"
+      redirect_back(fallback_location: root_path)
     end
   end
 end

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5 posts1">
+      <% if @post.errors.any? %>
+        <div class="alert alert-danger">
+          <h4>エラーが発生しました:</h4>
+          <ul>
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <h1 class="text-center">コメント編集</h1>
+      <%= form_with model: [@post, @comment], local: true do |comment| %>
+        <%= comment.text_area :comment, rows: '5', class: "form-control", style: "width: 100%;" %>
+      <div class="form-group my-5">
+        <%= comment.hidden_field :post_id, value: @post.id %>
+        <%= comment.submit '保存', class: 'btn btn-primary btn-block mb-5' %>
+        <%= link_to '削除', post_comment_path(@comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-block" %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>
