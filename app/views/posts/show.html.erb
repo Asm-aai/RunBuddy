@@ -23,9 +23,9 @@
         <p><%= link_to '編集', edit_post_path(@post), class: "btn btn-success" %><%= link_to '削除', post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mx-2" %></p>
       <% end %>
     </div>
-    <div class="col-md-6 mx-auto">
-      <%= render 'comments/index', post: @post, comment: @comment %>
-    </div>
+
   </div>
+  <%= render 'comments/index', post: @post, comment: @comment %>
+  <%= render 'comments/new', post: @post, comment: @comment %>
 </div>
 

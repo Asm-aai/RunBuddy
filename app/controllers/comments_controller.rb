@@ -5,12 +5,6 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-
-    if @post.nil?
-      redirect_back(fallback_location: posts_path, alert: '投稿が見つかりません。')
-      return
-    end
-
     @comment = current_user.comments.new(comment_params)
 
     @comment.total_star = "1"
@@ -19,6 +13,7 @@ class CommentsController < ApplicationController
     @comment.amenity_star = "1"
     @comment.safety_star = "1"
     @comment.cost_star = "1"
+    # 仮データ
 
     if @comment.save
       redirect_to post_path(@post), notice: 'コメントを投稿しました。'
@@ -34,15 +29,35 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-
+    Comment.find(params[:id]).destroy
+    redirect_to post_path(params[:post_id])
   end
 
   def edit
+    @post = Post.find(params[:id])
+    @comment = Comment.find(params[:post_id])
+
+    @comment.total_star = "1"
+    @comment.extent_star = "1"
+    @comment.clean_star = "1"
+    @comment.amenity_star = "1"
+    @comment.safety_star = "1"
+    @comment.cost_star = "1"
+    # 仮データ
 
   end
 
   def update
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
 
+    if @comment.update(comment_params)
+      flash[:notice] = "コメントが更新されました。"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "コメントの更新に失敗しました。"
+      render :edit
+    end
   end
 
   private
