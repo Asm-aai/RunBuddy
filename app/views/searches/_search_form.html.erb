@@ -1,9 +1,7 @@
-<% if user_signed_in? %>
-  <div class="search-form">
-    <!--クラス名必要か確認すること-->
-    <%= form_with url: search_path, local: true, method: :get do |search| %>
-      <%= search.text_field :word, placeholder:' キーワード検索', style: 'font-size: 18px;', class: "rounded border-0" %>
-      <%= search.submit "検索", class: "btn btn-outline-light" %>
-    <% end %>
-  </div>
-<% end %>
+<div class="search-form">
+  <!--クラス名必要か確認すること-->
+  <%= form_with url: search_path, local: true, method: :get do |search| %>
+    <%= search.text_field :word, placeholder:' キーワード検索', style: 'font-size: 18px;', class: "rounded border-0" %>
+    <%= search.submit "検索", class: "btn btn-outline-light" %>
+  <% end %>
+</div>
