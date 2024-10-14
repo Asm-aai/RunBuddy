@@ -1,4 +1,4 @@
-class Admin::PostsController < ApplicationController
+class Admin::PostsController < AdminApplicationController
   before_action :set_post, only: [:show, :destroy]
 
   def show
@@ -15,6 +15,6 @@ class Admin::PostsController < ApplicationController
 
   private
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
   end
 end

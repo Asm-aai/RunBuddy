@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class User::CommentsController < UserApplicationController
   def new
 
   end
