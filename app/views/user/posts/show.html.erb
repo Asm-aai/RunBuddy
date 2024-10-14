@@ -1,0 +1,5 @@
+<div class="container posts1">
+  <%= render 'post_detail', post: @post %>
+  <%= render 'user/comments/index', post: @post, comment: @comment %>
+  <%= render 'user/comments/new', post: @post, comment: @comment %>
+</div>
