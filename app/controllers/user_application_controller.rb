@@ -1,4 +1,4 @@
-class UserApplicationController < ActionController::Base
+class UserApplicationController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
   before_action :authorize_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_user, only: [:my_page]

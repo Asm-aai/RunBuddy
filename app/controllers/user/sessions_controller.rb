@@ -1,34 +1,35 @@
 # frozen_string_literal: true
 class User::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    @user = User.new
+  end
 
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+    user = User.find_by(email: params[:email])
+    admin = Admin.find_by(email: params[:email])
 
-  # protected
+    if params[:email].blank? || params[:password].blank?
+      flash.now[:alert] = "メールアドレスとパスワードを入力してください。"
+      render :new and return
+    elsif user&.valid_password?(params[:password])
+      sign_in user
+      redirect_to my_page_path
+    elsif admin&.valid_password?(params[:password])
+      sign_in admin
+      redirect_to admin_posts_path, notice: "管理者としてログインしました。"
+    else
+      flash.now[:alert] = "メールアドレスまたはパスワードが無効です。"
+      render :new
+    end
+  end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to posts_path, notice: "guestuserでログインしました。"
+    redirect_to posts_path, notice: "ゲストユーザーでログインしました。"
   end
-
 
   protected
   def after_sign_in_path_for(resource)
