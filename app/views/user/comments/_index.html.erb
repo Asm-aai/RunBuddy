@@ -1,9 +1,9 @@
 <div class="row mt-5">
   <% if post.comments.any? %>
-    <% post.comments.each do |comment| %>
-      <div class="col-md-10 mb-4 mx-auto">
-        <h2>レビュー一覧</h2>
-        <p>コメント数：<%= post.comments.count %></p>
+    <div class="col-md-10 mb-4 mx-auto">
+      <h2>レビュー一覧</h2>
+      <p>コメント数：<%= post.comments.count %></p>
+      <% post.comments.each do |comment| %>
         <div class="card shadow-sm"> <!-- カードに影を追加 -->
           <div class="card-body">
             <div class="card-title">
@@ -29,14 +29,14 @@
             <% if current_admin %>
               <%= link_to '削除', admin_post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
             <% elsif comment.user_id == current_user.id %>
-              <%= link_to '編集', edit_post_comment_path(comment), class: "btn btn-success" %>
-              <%= link_to '削除', post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
+              <%= link_to '編集', edit_post_comment_path(post, comment), class: "btn btn-success" %>
+              <%= link_to '削除', [post, comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
             <% end %>
           </div>
           <!--レビュー機能入れたら、右上にボタン設置させてみる-->
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% else %>
     <div class="col-md-10 mb-4 mx-auto">
       <p>まだコメントがありません。</p>

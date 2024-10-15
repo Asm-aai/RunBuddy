@@ -16,7 +16,9 @@ class UserApplicationController < ApplicationController
 
   private
   def authorize_user
-    unless params(:id).to_i == current_user.id
+    post = Post.find(params[:post_id])
+    comment = post.comments.find(params[:id]) # コメントを見つける
+    unless comment.user_id == current_user.id
       redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
     end
   end

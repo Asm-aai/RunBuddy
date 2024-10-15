@@ -6,6 +6,7 @@ class User::CommentsController < UserApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
+    @comment.post_id = @post.id
 
     @comment.total_star = "1"
     @comment.extent_star = "1"
@@ -34,8 +35,8 @@ class User::CommentsController < UserApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-    @comment = Comment.find(params[:post_id])
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
 
     @comment.total_star = "1"
     @comment.extent_star = "1"

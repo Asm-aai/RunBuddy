@@ -24,9 +24,14 @@
       <%= link_to post.user.name, admin_user_path(post.user) %>
     <% end %>
     </strong></p>
-    <% if current_user == post.user %>
-      <p><%= link_to '編集', edit_post_path(post), class: "btn btn-success" %><%= link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mx-2" %></p>
-    <% end %>
+    <p>
+      <% if current_user == current_admin %>
+        <%= link_to '削除', admin_post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mx-2" %>
+      <% elsif current_user == post.user %>
+        <%= link_to '編集', edit_post_path(post), class: "btn btn-success" %>
+        <%= link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mx-2" %>
+      <% end %>
+    </p>
     <%= link_to '戻る', params[:return_to] || posts_path, class: 'btn btn-secondary' %>
   </div>
 </div>
