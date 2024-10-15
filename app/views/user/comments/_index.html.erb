@@ -1,39 +1,45 @@
 <div class="row mt-5">
-  <% post.comments.each do |comment| %>
-    <div class="col-md-10 mb-4 mx-auto">
-      <h2>レビュー一覧</h2>
-      <p>コメント数：<%= post.comments.count %></p>
-      <div class="card shadow-sm"> <!-- カードに影を追加 -->
-        <div class="card-body">
-          <div class="card-title">
-            <%= comment.user.name %>
-            <br>
-            <span class="float-end"> 総合評価：
-            <!--デザイン確認すること-->
-              <%= comment.total_star %>
-              <!--% comment.total_star.to_i.times do %>-->
-              <!--i class="fas fa-star text-warning"></i>-->
-              <!--end -->
-              <!--% (5 - comment.total_star.to_i).times do %>-->
-                <!--i class="far fa-star text-warning"></i>-->
-              <!--% end %>-->
-            </span>
-            <p class="card-text"><%= comment.comment %></p>
-            <p class="card-text">
-              <small class="text-muted">投稿日：<%= comment.created_at.strftime("%Y/%m/%d") %></small>
-            </p>
+  <% if post.comments.any? %>
+    <% post.comments.each do |comment| %>
+      <div class="col-md-10 mb-4 mx-auto">
+        <h2>レビュー一覧</h2>
+        <p>コメント数：<%= post.comments.count %></p>
+        <div class="card shadow-sm"> <!-- カードに影を追加 -->
+          <div class="card-body">
+            <div class="card-title">
+              <%= comment.user.name %>
+              <br>
+              <span class="float-end"> 総合評価：
+              <!--デザイン確認すること-->
+                <%= comment.total_star %>
+                <!--% comment.total_star.to_i.times do %>-->
+                <!--i class="fas fa-star text-warning"></i>-->
+                <!--end -->
+                <!--% (5 - comment.total_star.to_i).times do %>-->
+                  <!--i class="far fa-star text-warning"></i>-->
+                <!--% end %>-->
+              </span>
+              <p class="card-text"><%= comment.comment %></p>
+              <p class="card-text">
+                <small class="text-muted">投稿日：<%= comment.created_at.strftime("%Y/%m/%d") %></small>
+              </p>
+            </div>
           </div>
+          <div class="p-3">
+            <% if current_admin %>
+              <%= link_to '削除', admin_post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
+            <% elsif comment.user_id == current_user.id %>
+              <%= link_to '編集', edit_post_comment_path(comment), class: "btn btn-success" %>
+              <%= link_to '削除', post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
+            <% end %>
+          </div>
+          <!--レビュー機能入れたら、右上にボタン設置させてみる-->
         </div>
-        <div class="p-3">
-          <% if current_admin %>
-            <%= link_to '削除', admin_post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
-          <% elsif comment.user_id == current_user.id %>
-            <%= link_to '編集', edit_post_comment_path(comment), class: "btn btn-success" %>
-            <%= link_to '削除', post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
-          <% end %>
-        </div>
-        <!--レビュー機能入れたら、右上にボタン設置させてみる-->
       </div>
+    <% end %>
+  <% else %>
+    <div class="col-md-10 mb-4 mx-auto">
+      <p>まだコメントがありません。</p>
     </div>
   <% end %>
 </div>
