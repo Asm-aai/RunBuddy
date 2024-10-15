@@ -22,9 +22,9 @@
               <p class="card-text"><%= post.introduction %></p>
               <p class="card-text">コメント数：<%= post.comments.count %></p>
               <% if user_signed_in? %>
-                <%= link_to "詳細", post_path(post.id), class: "btn btn-primary" %>
+                <%= link_to "詳細", post_path(post.id, return_to: request.fullpath), class: "btn btn-primary" %>
               <% else %>
-                <%= link_to "詳細", admin_post_path(post.id), class: "btn btn-primary" %>
+                <%= link_to "詳細", admin_post_path(post.id, return_to: request.fullpath), class: "btn btn-primary" %>
               <% end %>
             </div>
           </div>
