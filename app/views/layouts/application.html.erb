@@ -15,6 +15,23 @@
   <body>
     <%= render 'layouts/header' %>
 
+    <div class="bg-secondary top2 text-right">
+      <% if user_signed_in? || current_admin %>
+        <%= render "searches/search_form" %>
+      <% end %>
+    </div>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-warning text-center font-weight-bold">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger text-center font-weight-bold">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

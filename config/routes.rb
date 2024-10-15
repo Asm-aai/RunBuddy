@@ -10,18 +10,11 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "user/sessions#guest_sign_in"
   end
 
-  devise_for :admin, skip: [:passwords], controllers: {
+  devise_for :admin, skip: [:passwords, :registrations], controllers: {
     sessions: 'admin/sessions',
   }
+  # 管理者アカウントの追加を行う場合、「:registrations」は外す
 
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/destroy'
-  end
-  namespace :admin do
-    get 'comments/destroy'
-  end
   # 整理する必要あり
 
   scope module: 'user' do
@@ -32,13 +25,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :sessions, only: [:new, :create, :destroy] do
-      collection do
-        post :admin_sign_in
-      end
-    end
     resources :users, only: [:index, :destroy, :show]
-    resources :posts do
+    resources :posts, only: [:index, :destroy, :show] do
       resources :comments, only: [:index, :destroy]
     end
   end
