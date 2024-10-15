@@ -15,19 +15,19 @@
   <body>
     <%= render 'layouts/header' %>
 
-    <div class="bg-secondary top2 text-right">
+    <div class="bg-secondary top2 text-right px-2">
       <% if user_signed_in? || current_admin %>
         <%= render "searches/search_form" %>
       <% end %>
     </div>
 
     <% if flash[:notice] %>
-      <div class="alert alert-warning text-center font-weight-bold">
+      <div class="alert alert-warning text-center font-weight-bold mb-0">
         <%= flash[:notice] %>
       </div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="alert alert-danger text-center font-weight-bold">
+      <div class="alert alert-danger text-center font-weight-bold mb-0">
         <%= flash[:alert] %>
       </div>
     <% end %>

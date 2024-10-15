@@ -3,44 +3,46 @@
     <div class="col-md-8 mt-5 posts1">
       <h1 class="text-center">新規投稿</h1>
       <div class="mb-4">
-      <%= form_with model: @post do |f| %>
-        <% if @post.errors.any? %>
-          <div class="alert alert-danger">
-            <h4>以下のエラーがあります：</h4>
-            <ul>
-              <% @post.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+        <%= form_with model: @post do |f| %>
+          <% if @post.errors.any? %>
+            <div class="alert alert-danger">
+              <h4>以下のエラーがあります：</h4>
+              <ul>
+                <% @post.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <p>画像</p>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+
+          <div class="form-group">
+            <p>名称</p>
+            <%= f.text_field :title, class: 'form-control', placeholder: 'ドッグランの名前' %>
+          </div>
+
+          <div class="form-group">
+            <p>住所</p>
+            <%= f.text_field :address, class: 'form-control', placeholder: '例: 東京都千代田区丸の内１丁目' %>
+          </div>
+
+          <div class="form-group">
+            <p>ホームページ</p>
+            <%= f.text_field :hp, class: 'form-control', placeholder: '例: https://runbuddy.com' %>
+          </div>
+
+          <div class="form-group">
+            <p>紹介文</p>
+            <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。' %>
+          </div>
+          <div class="form-group my-5">
+            <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
           </div>
         <% end %>
-      <div class="form-group">
-        <p>画像</p>
-        <%= f.file_field :image, accept: "image/*", class: 'form-control-file' %>
       </div>
-        <div class="form-group">
-          <p>名称</p>
-          <%= f.text_field :title, class: 'form-control', placeholder: 'ドッグランの名前' %>
-        </div>
-
-        <div class="form-group">
-          <p>住所</p>
-          <%= f.text_field :address, class: 'form-control', placeholder: '例: 東京都千代田区丸の内１丁目' %>
-        </div>
-
-        <div class="form-group">
-          <p>ホームページ</p>
-          <%= f.text_field :hp, class: 'form-control', placeholder: '例: https://runbuddy.com' %>
-        </div>
-
-        <div class="form-group">
-          <p>紹介文</p>
-          <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。' %>
-        </div>
-        <div class="form-group my-5">
-          <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>

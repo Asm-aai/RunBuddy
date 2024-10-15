@@ -8,7 +8,9 @@
             <th scope="col">ID</th>
             <th scope="col">顧客名</th>
             <th scope="col">メールアドレス</th>
-            <th></th>
+            <th>投稿数</th>
+            <th>コメント数</th>
+            <th>リンク</th>
           </tr>
         </thead>
         <tbody class="text-center">
@@ -17,6 +19,8 @@
               <td><%= user.id %></td>
               <td><%= user.name %></td>
               <td><%= user.email %></td>
+              <td><%= user.posts.count %></td>
+              <td><%= user.comments.count %></td>
               <td><%= link_to "詳細", admin_user_path(user), class: "btn btn-primary" %></td>
             </tr>
           <% end %>

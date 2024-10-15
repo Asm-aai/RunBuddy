@@ -1,10 +1,10 @@
 <div class="row mt-5">
-  <% if post.comments.any? %>
-    <div class="col-md-10 mb-4 mx-auto">
-      <h2>レビュー一覧</h2>
-      <p>コメント数：<%= post.comments.count %></p>
+  <div class="col-md-10 mb-4 mx-auto">
+    <h2>レビュー一覧</h2>
+    <% if post.comments.any? %>
+      <p>レビュー数：<%= post.comments.count %></p>
       <% post.comments.each do |comment| %>
-        <div class="card shadow-sm"> <!-- カードに影を追加 -->
+        <div class="card shadow-sm">
           <div class="card-body">
             <div class="card-title">
               <%= comment.user.name %>
@@ -27,19 +27,17 @@
           </div>
           <div class="p-3">
             <% if current_admin %>
-              <%= link_to '削除', admin_post_comment_path(comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
+              <%= link_to '削除', admin_post_comment_path(post, comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger mx-4" %>
             <% elsif comment.user_id == current_user.id %>
-              <%= link_to '編集', edit_post_comment_path(post, comment), class: "btn btn-success" %>
-              <%= link_to '削除', [post, comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger" %>
+              <%= link_to '編集', edit_post_comment_path(post, comment), class: "btn btn-success mx-4" %>
+              <%= link_to '削除', [post, comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger mx-4" %>
             <% end %>
           </div>
           <!--レビュー機能入れたら、右上にボタン設置させてみる-->
         </div>
       <% end %>
-    </div>
-  <% else %>
-    <div class="col-md-10 mb-4 mx-auto">
-      <p>まだコメントがありません。</p>
-    </div>
-  <% end %>
+    <% else %>
+      <p>まだレビューがありません。</p>
+    <% end %>
+  </div>
 </div>
