@@ -1,17 +1,21 @@
 <div class="row">
-  <div class="col">
+  <div class="col text-center">
     <h2 class="my-3">ユーザー情報</h2>
     <table class="table table-bordered">
       <thead>
         <tr>
           <th>ユーザー名</th>
           <th>メールアドレス</th>
+          <th>投稿数</th>
+          <th>コメント数</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
+          <td><%= user.posts.count %></td>
+          <td><%= user.comments.count %></td>
         </tr>
       </tbody>
     </table>
