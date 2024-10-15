@@ -8,7 +8,6 @@ class User::CommentsController < UserApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = @post.id
 
-
     @comment.total_star = "1"
     @comment.extent_star = "1"
     @comment.clean_star = "1"
