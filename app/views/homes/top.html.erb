@@ -6,9 +6,6 @@
           愛犬とあなたの頼れるパートナー、<br>
           <span>RunBuddy</span>へようこそ！
         </h1>
-        <h3 class="top1">
-          全国のドッグラン情報を一挙に集めました。
-        </h3>
         <div class="top1">
           <h5>「新しいドッグランを開拓したい！」</h5>
           <h5>「行ってみたいドッグランはあるけれど、愛犬も入れるか分からない。」</h5>
@@ -20,10 +17,10 @@
         <h5 class="top1">
           RunBuddyで、愛犬とのお出かけがもっと楽しく、もっと快適になりますよ！
         </h5>
-        <div class="col-3 mx-auto mt-4">
-          <%= link_to 'ドッグラン一覧を見る', posts_path, class: 'btn btn-danger top2' %><br>
+        <div class="col-12 mx-auto mt-4">
+          <%= link_to 'ドッグラン一覧を見る', posts_path, class: 'btn btn-danger top2 w-25' %><br>
           <% unless user_signed_in? || current_admin %>
-            <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-danger mt-3 top2", method: :post %>
+            <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-danger mt-3 top2 w-25", method: :post %>
             <p class="text-light">お試しの方はこちらから</p>
           <% end %>
         </div>
