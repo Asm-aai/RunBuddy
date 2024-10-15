@@ -90,5 +90,4 @@ class User::RegistrationsController < Devise::RegistrationsController
       redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
     end
   end
-
 end
