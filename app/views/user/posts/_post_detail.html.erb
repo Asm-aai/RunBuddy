@@ -27,6 +27,6 @@
     <% if current_user == post.user %>
       <p><%= link_to '編集', edit_post_path(post), class: "btn btn-success" %><%= link_to '削除', post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mx-2" %></p>
     <% end %>
-    <%= link_to '戻る', 
+    <%= link_to '戻る', params[:return_to] || posts_path, class: 'btn btn-secondary' %>
   </div>
 </div>
