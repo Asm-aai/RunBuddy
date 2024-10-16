@@ -3,7 +3,6 @@ class User::PostsController < UserApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :new, :create]
 
-
   def new
     @post = Post.new
   end

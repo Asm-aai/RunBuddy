@@ -24,7 +24,7 @@
       <% if admin_signed_in? %>
         <%= link_to 'アカウント削除', admin_user_path(user), date: { confirm: '本当に削除しますか？'}, method: :delete, class: "btn btn-danger btn-block" %>
       <% elsif user == current_user %>
-        <%= link_to "", edit_user_registration_path(user), class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+        <%= link_to "", edit_user_registration_path, class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
       <% end %>
     </row>
 

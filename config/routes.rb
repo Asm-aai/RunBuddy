@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :destroy, :show]
-    resources :tags, only: [:new, :create, :edit, :update, :index, :destroy]
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :posts, only: [:index, :destroy, :show] do
       resources :comments, only: [:index, :destroy]
     end

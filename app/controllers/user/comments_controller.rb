@@ -1,4 +1,6 @@
 class User::CommentsController < UserApplicationController
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
   def new
 
   end
@@ -20,7 +22,7 @@ class User::CommentsController < UserApplicationController
       redirect_to post_path(@post), notice: 'コメントを投稿しました。'
     else
       Rails.logger.error(@comment.errors.full_messages)
-      redirect_back(fallback_location: post_path(@post), alert: 'コメントの投稿に失敗しました。')
+      redirect_back(fallback_location: post_path(@post), alert: 'コメントを入力してください。')
     end
   end
 
@@ -65,5 +67,13 @@ class User::CommentsController < UserApplicationController
   def comment_params
     # params.require(:comment).permit(:comment, :total_star, :extent_star, :clean_star, :amenity_star, :safety_star, :cost_star, :user_id, :post_id)
     params.require(:comment).permit(:comment, :user_id, :post_id, :total_star, :extent_star, :clean_star, :amenity_star, :safety_star, :cost_star)
+  end
+
+  def authorize_user
+    post = Post.find(params[:post_id])
+    comment = post.comments.find(params[:id])
+    unless comment.user_id == current_user.id
+      redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
+    end
   end
 end
