@@ -27,6 +27,13 @@ class User::PostsController < UserApplicationController
 
   def index
     @posts = Post.all
+
+  end
+
+  def index_only_tag
+    @tag = Tag.find(params[:id])
+    @posts_only_tag = @tag.posts
+    # @posts = Post.tagged_with(params[:tag])  # 例: `params[:tag]`に基づいてフィルタリング
   end
 
   def show

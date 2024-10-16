@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     resources :users, only: [:show]
     resources :posts do
       resources :comments, only: [:create, :destroy, :edit, :update]
+      collection do
+      get 'index_only_tag/:id', to: 'posts#index_only_tag'
+      end
     end
   end
 

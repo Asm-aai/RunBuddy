@@ -3,6 +3,7 @@
 class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authorize_user!, only: [:edit, :update, :destroy]
+  # update/destroy不要かも
 
   def destroy
     super do
