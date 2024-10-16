@@ -33,7 +33,6 @@ class User::PostsController < UserApplicationController
   def show
     @post_user = @post.user
     @comment = Comment.new
-    @post = Post.find(params[:id])
   end
 
   def edit
@@ -46,7 +45,7 @@ class User::PostsController < UserApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :image)
+    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :image, tag_ids: [])
   end
 
   def authorize_user

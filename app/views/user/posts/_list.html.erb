@@ -18,6 +18,14 @@
           <div class="card mx-2 p-1 mb-4" id="post-<%= post.id %>" style="width: 70%;">
             <%= image_tag post.get_image, class: "img-thumbnail card-img-top" %>
             <div class="card-body">
+              <p>
+                <% post.tags.each do |tag| %>
+                  <button type="button" class="btn btn-secondary btn-sm" disabled>
+                    <span><%= tag.name %></span>
+                  </button>
+                <% end %>
+              </p>
+              <!--デザインをつける-->
               <h5 class="card-title"><%= post.title %></h5>
               <p class="card-text"><%= post.introduction %></p>
               <p class="card-text">コメント数：<%= post.comments.count %></p>

@@ -9,6 +9,14 @@
     <%= image_tag post.get_image, class: "img-thumbnail shadow-lg" %>
   </div>
   <div class="col-md-7 posts1 mt-10 my-auto">
+    <p>
+      <% post.tags.each do |tag| %>
+        <button type="button" class="btn btn-secondary btn-sm" disabled>
+          <span><%= tag.name %></span>
+        </button>
+      <% end %>
+    </p>
+    <!--デザインをつける-->
     <p><i class="fa-solid fa-marker"></i> <strong>名称：</strong> <%= post.title %></p>
     <hr>
     <p><i class="fas fa-map-marker-alt"></i> <strong>住所：</strong> <%= post.address %></p>
