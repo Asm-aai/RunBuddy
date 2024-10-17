@@ -27,13 +27,11 @@ class User::PostsController < UserApplicationController
 
   def index
     @posts = Post.all
-
   end
 
-  def index_only_tag
+  def tag
     @tag = Tag.find(params[:id])
     @posts_only_tag = @tag.posts
-    # @posts = Post.tagged_with(params[:tag])  # 例: `params[:tag]`に基づいてフィルタリング
   end
 
   def show
@@ -45,13 +43,21 @@ class User::PostsController < UserApplicationController
   end
 
   def destroy
-    @post.delete
-    redirect_to my_page_path
+    @post.destroy
+    redirect_to posts_path
+  end
+
+  def tag_index
+    @tags = Tag.all
+  end
+
+  def inactive_index
+    @inactive_posts = Post.where(is_active: false)
   end
 
   private
   def post_params
-    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :image, tag_ids: [])
+    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :image, :is_active, tag_ids: [])
   end
 
   def authorize_user

@@ -1,9 +1,6 @@
 class User::CommentsController < UserApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
-
-  def new
-
-  end
+  before_action :ensure_guest_user
 
   def create
     @post = Post.find(params[:post_id])

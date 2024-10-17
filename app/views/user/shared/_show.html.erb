@@ -1,32 +1,35 @@
-<div class="row">
-  <div class="col text-center">
-    <h2 class="my-3">ユーザー情報</h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>ユーザー名</th>
-          <th>メールアドレス</th>
-          <th>投稿数</th>
-          <th>コメント数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td><%= user.posts.count %></td>
-          <td><%= user.comments.count %></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="col text-center">
+  <h2 class="my-3">ユーザー情報</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+        <th>投稿数</th>
+        <th>コメント数</th>
+        <% if request.path.include?("my_page") %>
+          <th>下書き投稿</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.posts.count - user.posts.where(is_active: false).count %></td>
+        <td><%= user.comments.count %></td>
+        <% if request.path.include?("my_page") %>
+          <td><%= link_to user.posts.where(is_active: false).count, inactive_posts_path %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
 
-    <row>
-      <% if admin_signed_in? %>
-        <%= link_to 'アカウント削除', admin_user_path(user), date: { confirm: '本当に削除しますか？'}, method: :delete, class: "btn btn-danger btn-block" %>
-      <% elsif user == current_user %>
-        <%= link_to "", edit_user_registration_path, class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
-      <% end %>
-    </row>
-
-  </div>
+  <row>
+    <% if admin_signed_in? %>
+      <%= link_to 'アカウント削除', admin_user_path(user), date: { confirm: '本当に削除しますか？'}, method: :delete, class: "btn btn-danger btn-block" %>
+    <% elsif user == current_user %>
+      <%= link_to "", edit_user_registration_path, class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+    <% end %>
+  </row>
 </div>

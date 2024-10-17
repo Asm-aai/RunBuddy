@@ -1,6 +1,6 @@
 class UserApplicationController < ApplicationController
   before_action :authenticate_user!, except: [:top, :about]
-  before_action :ensure_guest_user, only: [:my_page]
+  before_action :ensure_guest_user, only: [:new]
 
   layout 'application'
 
@@ -16,7 +16,7 @@ class UserApplicationController < ApplicationController
   private
   def ensure_guest_user
     if current_user.guest_user?
-      flash[:notice] = "ゲストユーザーはプロフィール画面へ遷移できません。"
+      flash[:notice] = "ゲストユーザーは権限がありません。"
       redirect_back(fallback_location: root_path)
     end
   end

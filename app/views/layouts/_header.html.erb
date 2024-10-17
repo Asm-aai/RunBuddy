@@ -1,13 +1,14 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary custom-font">
-    <a class="navbar-brand font-weight-bold custom-font" href="/" ><span>RunBuddy</span></a>
+    <a class="navbar-brand font-weight-bold custom-font" href="/" ><h2><b>RunBuddy</b></h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav text-light">
+      <ul class="navbar-nav ml-auto text-light">
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "タグ一覧", tags_posts_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to "マイページ", my_page_path, class: 'nav-link' %></li>

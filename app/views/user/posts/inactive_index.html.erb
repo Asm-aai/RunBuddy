@@ -3,12 +3,17 @@
     <div class="col-md-12 my-3">
       <h2 class="text-center">投稿一覧</h2>
     </div>
-    <% if @posts.where(is_active: true).any? %>
-      <%= render 'list', posts: @posts %>
+    <% if @inactive_posts.any? %>
+      <%= render 'list', posts: @inactive_posts %>
     <% else %>
       <div class="alert alert-info text-center my-4 mx-auto" role="alert">
         <p>まだ投稿がありません。</p>
       </div>
     <% end %>
+    <div class="row">
+      <div class="col-md-12 text-center posts1">
+        <%= link_to '戻る', my_page_path, class: "btn btn-secondary my-2" %>
+      </div>
+    </div>
   </div>
 </div>

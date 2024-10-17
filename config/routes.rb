@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments, only: [:create, :destroy, :edit, :update]
       collection do
-      get 'index_only_tag/:id', to: 'posts#index_only_tag'
+        get 'tag/:id', to: 'posts#tag', as: :tag
+        get 'tags', to: 'posts#tag_index', as: :tags
+        get 'inactive', to: 'posts#inactive_index'
       end
     end
   end

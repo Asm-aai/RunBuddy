@@ -1,4 +1,4 @@
-class Admin::TagsController < ApplicationController
+class Admin::TagsController < AdminApplicationController
 
   def create
     @tags = Tag.all

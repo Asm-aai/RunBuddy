@@ -3,6 +3,8 @@
 class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :ensure_guest_user, only: [:edit]
+
   # update/destroy不要かも
 
   def destroy
@@ -33,6 +35,13 @@ class User::RegistrationsController < Devise::RegistrationsController
     @user = User.find(user_id)
     unless @user == current_user
       redirect_back(fallback_location: posts_path, alert: "権限がないため、この操作を実行できません。")
+    end
+  end
+
+  def ensure_guest_user
+    if current_user.guest_user?
+      flash[:notice] = "ゲストユーザーは権限がありません。"
+      redirect_back(fallback_location: root_path)
     end
   end
 
