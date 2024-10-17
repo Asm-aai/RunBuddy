@@ -1,4 +1,5 @@
 class Admin::TagsController < AdminApplicationController
+  before_action :set_tag, only: [:edit, :update, :destroy]
 
   def create
     @tags = Tag.all
@@ -23,11 +24,9 @@ class Admin::TagsController < AdminApplicationController
   end
 
   def edit
-    @tag = Tag.find(params[:id])
   end
 
 def update
-  @tag = Tag.find(params[:id])
   old_name = @tag.name
   new_name = tag_params[:name]
 
@@ -45,7 +44,6 @@ def update
 end
 
   def destroy
-    @tag = Tag.find(params[:id])
     tag_name = @tag.name
     @tag.destroy
     redirect_to admin_tags_path, notice: "“#{tag_name}”タグが削除されました。"
@@ -54,5 +52,9 @@ end
   private
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def set_tag
+    @tag = Tag.find(params[:id])
   end
 end

@@ -1,57 +1,69 @@
-<div class="container posts1">
-  <div class="row">
-    <div class="col">
-      <h2 class="my-4">ユーザー編集</h2>
+<div class="container my-5 posts1">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow p-3">
+        <div class="card-body my-3">
+          <h3 class="card-title text-center mb-4">ユーザー編集</h3>
+          <%= form_with(model: resource, url: registration_path(resource_name), local: :true) do |f| %>
+            <%= render "user/shared/error_messages", resource: resource %>
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+              </div>
+              <%= f.text_field :name, class: "form-control", placeholder: "名前", autofocus: true, autocomplete: "name" %>
+            </div>
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+              </div>
+              <%= f.email_field :email, class: "form-control", placeholder: "メールアドレス", autofocus: true, autocomplete: "email" %>
+            </div>
 
-      <%= form_with(model: resource, url: registration_path(resource_name), local: :true) do |f| %>
-        <%= render "user/shared/error_messages", resource: resource %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
 
-        <div class="field my-3">
-          <label>名前</label><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
-        </div>
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              </div>
+              <%= f.password_field :password, class: "form-control", placeholder: "新しいパスワード(変更したくない場合は空白のままにしてください)", autofocus: true, autocomplete: "new-password" %>
+            </div>
 
-        <div class="form-group">
-          <label>メールアドレス</label>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-        </div>
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              </div>
+              <%= f.password_field :password_confirmation, class: "form-control", placeholder: "新しいパスワード再確認", autofocus: true, autocomplete: "new-password" %>
+            </div>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              </div>
+              <%= f.password_field :current_password, class: "form-control", placeholder: "現在のパスワード(変更を確認するには現在のパスワードが必要です)", autofocus: true, autocomplete: "current-password" %>
+            </div>
 
-        <div class="form-group">
-          <label>新しいパスワード<i>(変更したくない場合は空白のままにしてください)</i></label>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-          <% if @minimum_password_length %>
-            <small class="form-text text-muted"><%= @minimum_password_length %>文字以上</small>
+
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              </div>
+              <%= f.password_field :password_confirmation, class: "form-control", placeholder: "パスワード再確認", autofocus: true, autocomplete: "new-password" %>
+            </div>
+            <div class="actions mt-4">
+              <%= f.submit "登録する", class: "btn btn-primary btn-block mb-3" %>
+            </div>
           <% end %>
+          <div class="alert alert-warning mt-4 text-center" style="margin-left: auto; margin-right: auto; width: fit-content;">
+            <h4>アカウント削除</h4>
+            <div>本当に退会しますか？ <%= button_to "退会する", registration_path(resource_name), data: { confirm: "本当に削除して良いですか？", turbo_confirm: "本当に削除して良いですか？" }, method: :delete, class: "btn btn-danger" %></div>
+          </div>
+          <div class="text-center my-2">
+            <%= link_to "戻る", :back, class: "btn btn-secondary" %>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label>新しいパスワード再確認<br /></label>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <label>現在のパスワード <i>(変更を確認するには現在のパスワードが必要です)</i></label>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-        </div>
-
-        <div class="actions text-center">
-          <%= f.submit "更新", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-
-      <div class="alert alert-warning mt-4 text-center" style="margin-left: auto; margin-right: auto; width: fit-content;">
-        <h4>アカウント削除</h4>
-        <div>本当に退会しますか？ <%= button_to "退会する", registration_path(resource_name), data: { confirm: "本当に削除して良いですか？", turbo_confirm: "本当に削除して良いですか？" }, method: :delete, class: "btn btn-danger" %></div>
-      </div>
-
-      <div class="text-center my-2">
-        <%= link_to "戻る", :back, class: "btn btn-secondary" %>
       </div>
     </div>
   </div>
 </div>
-

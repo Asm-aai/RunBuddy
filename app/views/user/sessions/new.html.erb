@@ -1,28 +1,40 @@
-<div class="container my-5 p-3 d-flex justify-content-center">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>ログイン</h2>
-      <%= form_with model: @user, url: user_session_path do |f| %>
-        <div class="field my-3">
-          メールアドレス<br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
+<div class="container my-5 posts1">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow p-3">
+        <div class="card-body my-3">
+          <h3 class="card-title text-center mb-4">ユーザーログイン</h3>
+          <%= form_with model: @user, url: user_session_path do |f| %>
 
-        <div class="field my-3">
-          パスワード<br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+              </div>
+              <%= f.email_field :email, class: "form-control", placeholder: "メールアドレス", autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="input-group my-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+              </div>
+              <%= f.password_field :password, class: "form-control", placeholder: "パスワード", autofocus: true, autocomplete: "current-password" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field my-2" >
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+
+          <% end %>
+          <%= render "user/shared/links" %>
         </div>
-          <div class="actions">
-            <%= f.submit "ログイン", class: "btn btn-primary" %>
-          </div>
-        <% if devise_mapping.rememberable? %>
-          <div class="field" >
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
-      <% end %>
-      <%= render "user/shared/links" %>
+      </div>
     </div>
   </div>
 </div>
