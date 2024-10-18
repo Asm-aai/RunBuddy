@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row posts1">
+    <div class="col-md-12 my-3">
+      <h2 class="text-center">ブックマーク一覧</h2>
+    </div>
+    <% if @posts.any? %>
+      <%= render 'user/posts/list', posts: @posts %>
+    <% else %>
+      <div class="alert alert-info text-center my-4 mx-auto" role="alert">
+        <p>まだブックマークがありません。</p>
+      </div>
+    <% end %>
+  </div>
+</div>

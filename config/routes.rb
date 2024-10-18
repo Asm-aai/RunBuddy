@@ -20,10 +20,13 @@ Rails.application.routes.draw do
     resources :users, only: [:show]
     resources :posts do
       resources :comments, only: [:create, :destroy, :edit, :update]
+      resource :favorites, only: [:create, :destroy]
+      # 単数形：index無し、パスにidが含まれない
       collection do
         get 'tag/:id', to: 'posts#tag', as: :tag
         get 'tags', to: 'posts#tag_index', as: :tags
         get 'inactive', to: 'posts#inactive_index'
+        get 'favorites', to: 'favorites#index'
       end
     end
   end
