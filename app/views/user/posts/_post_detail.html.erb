@@ -10,7 +10,7 @@
     <p>
       <% post.tags.each do |tag| %>
         <button type="button" class="btn btn-secondary btn-sm" disabled>
-          <span><%= tag.name %></span>
+          <span><%= link_to tag.name, tag_posts_path(tag.id), class: "text-white" %></span>
         </button>
       <% end %>
     </p>
