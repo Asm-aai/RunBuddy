@@ -6,11 +6,22 @@ class UserApplicationController < ApplicationController
 
   def my_page
     @my_posts = current_user.posts
+
+    if params[:sort] == "created_at_asc"
+      @my_posts = @my_posts.order(created_at: :asc)
+    elsif params[:sort] == "created_at_desc"
+      @my_posts = @my_posts.order(created_at: :desc)
+    elsif params[:sort] == "favorited_desc"
+      @my_posts = @my_posts.left_joins(:favorites).group('posts.id').order('COUNT(favorites.id) DESC')
+    elsif params[:sort] == "comments_desc"
+      @my_posts = @my_posts.left_joins(:comments).group('posts.id').order('COUNT(comments.id) DESC')
+    end
   end
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+
   end
 
   private

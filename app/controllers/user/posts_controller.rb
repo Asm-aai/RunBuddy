@@ -27,6 +27,7 @@ class User::PostsController < UserApplicationController
 
   def index
     @posts = Post.all
+    @url = posts_path
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)
@@ -34,10 +35,8 @@ class User::PostsController < UserApplicationController
       @posts = @posts.order(created_at: :desc)
     elsif params[:sort] == "favorited_desc"
       @posts = @posts.left_joins(:favorites).group('posts.id').order('COUNT(favorites.id) DESC')
-      # @posts = @posts.order('post.favorites.count': :asc)
     elsif params[:sort] == "comments_desc"
       @posts = @posts.left_joins(:comments).group('posts.id').order('COUNT(comments.id) DESC')
-
     end
   end
 

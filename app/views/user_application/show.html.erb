@@ -1,4 +1,15 @@
 <div class="container posts1">
-  <%= render 'user/shared/show', user: @user %>
-  <%= render 'user/posts/list', posts: @posts %>
+  <div class="row posts1">
+
+
+    <%= render 'user/shared/show', user: @user %>
+
+    <div class="col-md-12 my-3">
+      <h2 class="text-center">投稿一覧</h2>
+    </div>
+
+    <%= render 'user/posts/list', posts: @posts, url: user_path(@user) %>
+
+
+  </div>
 </div>

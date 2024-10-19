@@ -4,7 +4,7 @@
       <h2 class="text-center">投稿一覧</h2>
     </div>
     <% if @inactive_posts.any? %>
-      <%= render 'list', posts: @inactive_posts %>
+      <%= render 'list', posts: @inactive_posts, url: inactive_posts_path %>
     <% else %>
       <div class="alert alert-info text-center my-4 mx-auto" role="alert">
         <p>まだ投稿がありません。</p>

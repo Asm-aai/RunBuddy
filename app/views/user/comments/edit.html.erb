@@ -11,8 +11,113 @@
           </ul>
         </div>
       <% end %>
+      <h1 class="text-center my-3">コメント編集</h1>
+      <h5 class="text-secondary">※レビューは編集できません。</h5>
 
-      <h1 class="text-center">コメント編集</h1>
+      <div class="form-group">
+        <div class="d-flex align-items-center mb-2">
+          <p class="my-auto">総合評価　　　　　　：</p>
+          <div id="star_<%= @comment.id %>"></div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var elem = document.querySelector('#star_<%= @comment.id %>');
+            var opt = {
+              score: "<%= @comment.total_star.present? ? @comment.total_star : 0 %>",
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+            };
+            raty(elem, opt);
+          });
+        </script>
+
+        <div class="d-flex align-items-center mb-2">
+          <p class="my-auto">ドッグランの広さ　　：</p>
+          <div id="star_extent_<%= @comment.id %>"></div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var elem = document.querySelector('#star_extent_<%= @comment.id %>');
+            var opt = {
+              score: "<%= @comment.extent_star.present? ? @comment.extent_star : 0 %>",
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+            };
+            raty(elem, opt);
+          });
+        </script>
+
+        <div class="d-flex align-items-center mb-2">
+          <p class="my-auto">清潔さ　　　　　　　：</p>
+          <div id="star_clean_<%= @comment.id %>"></div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var elem = document.querySelector('#star_clean_<%= @comment.id %>');
+            var opt = {
+              score: "<%= @comment.clean_star.present? ? @comment.clean_star : 0 %>",
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+            };
+            raty(elem, opt);
+          });
+        </script>
+
+        <div class="d-flex align-items-center mb-2">
+          <p class="my-auto">アメニティの充実さ　：</p>
+          <div id="star_amenity_<%= @comment.id %>"></div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var elem = document.querySelector('#star_amenity_<%= @comment.id %>');
+            var opt = {
+              score: "<%= @comment.amenity_star.present? ? @comment.amenity_star : 0 %>",
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+            };
+            raty(elem, opt);
+          });
+        </script>
+
+        <div class="d-flex align-items-center mb-2">
+          <p class="my-auto">安全性　　　　　　　：</p>
+          <div id="star_safety_<%= @comment.id %>"></div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var elem = document.querySelector('#star_safety_<%= @comment.id %>');
+            var opt = {
+              score: "<%= @comment.safety_star.present? ? @comment.safety_star : 0 %>",
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+            };
+            raty(elem, opt);
+          });
+        </script>
+
+        <div class="d-flex align-items-center mb-2">
+          <p class="my-auto">コストパフォーマンス：</p>
+          <div id="star_cost_<%= @comment.id %>"></div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var elem = document.querySelector('#star_cost_<%= @comment.id %>');
+            var opt = {
+              score: "<%= @comment.cost_star.present? ? @comment.cost_star : 0 %>",
+              readOnly: true,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+            };
+            raty(elem, opt);
+          });
+        </script>
+      </div>
+
       <%= form_with model: [@post, @comment], local: true do |comment| %>
         <%= comment.text_area :comment, rows: '5', class: "form-control", style: "width: 100%;" %>
       <div class="form-group my-5">
@@ -25,3 +130,5 @@
     </div>
   </div>
 </div>
+
+
