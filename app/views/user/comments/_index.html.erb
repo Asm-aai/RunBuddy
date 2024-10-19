@@ -1,3 +1,13 @@
+<!--each使えるか検証-->
+<% ratings = [
+  { label: "総合評価　　　　　　：", score_type: :total_star },
+  { label: "ドッグランの広さ　　：", score_type: :extent_star },
+  { label: "清潔さ　　　　　　　：", score_type: :clean_star },
+  { label: "アメニティの充実さ　：", score_type: :amenity_star },
+  { label: "安全性　　　　　　　：", score_type: :safety_star },
+  { label: "コストパフォーマンス：", score_type: :cost_star }
+] %>
+
 <div class="row mt-5">
   <div class="col-md-10 mb-4 mx-auto">
     <h2>レビュー一覧</h2>
@@ -9,109 +19,27 @@
             <div class="card-title">
               <p>投稿者：<%= link_to comment.user.name, user_path(post.user) %></p>
               <hr>
-<!--each使えるか検証する-->
+
+
               <div class="form-group">
-                <div class="d-flex align-items-center mb-2">
-                  <p class="my-auto">総合評価　　　　　　：</p>
-                  <div id="star_<%= comment.id %>"></div>
-                </div>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    var elem = document.querySelector('#star_<%= comment.id %>');
-                    var opt = {
-                      score: "<%= comment.total_star.present? ? comment.total_star : 0 %>",
-                      readOnly: true,
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
-
-                <div class="d-flex align-items-center mb-2">
-                  <p class="my-auto">ドッグランの広さ　　：</p>
-                  <div id="star_extent_<%= comment.id %>"></div>
-                </div>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    var elem = document.querySelector('#star_extent_<%= comment.id %>');
-                    var opt = {
-                      score: "<%= comment.extent_star.present? ? comment.extent_star : 0 %>",
-                      readOnly: true,
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
-
-                <div class="d-flex align-items-center mb-2">
-                  <p class="my-auto">清潔さ　　　　　　　：</p>
-                  <div id="star_clean_<%= comment.id %>"></div>
-                </div>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    var elem = document.querySelector('#star_clean_<%= comment.id %>');
-                    var opt = {
-                      score: "<%= comment.clean_star.present? ? comment.clean_star : 0 %>",
-                      readOnly: true,
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
-
-                <div class="d-flex align-items-center mb-2">
-                  <p class="my-auto">アメニティの充実さ　：</p>
-                  <div id="star_amenity_<%= comment.id %>"></div>
-                </div>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    var elem = document.querySelector('#star_amenity_<%= comment.id %>');
-                    var opt = {
-                      score: "<%= comment.amenity_star.present? ? comment.amenity_star : 0 %>",
-                      readOnly: true,
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
-
-                <div class="d-flex align-items-center mb-2">
-                  <p class="my-auto">安全性　　　　　　　：</p>
-                  <div id="star_safety_<%= comment.id %>"></div>
-                </div>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    var elem = document.querySelector('#star_safety_<%= comment.id %>');
-                    var opt = {
-                      score: "<%= comment.safety_star.present? ? comment.safety_star : 0 %>",
-                      readOnly: true,
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
-
-                <div class="d-flex align-items-center mb-2">
-                  <p class="my-auto">コストパフォーマンス：</p>
-                  <div id="star_cost_<%= comment.id %>"></div>
-                </div>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    var elem = document.querySelector('#star_cost_<%= comment.id %>');
-                    var opt = {
-                      score: "<%= comment.cost_star.present? ? comment.cost_star : 0 %>",
-                      readOnly: true,
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starOff: "<%= asset_path('star-off.png') %>",
-                    };
-                    raty(elem, opt);
-                  });
-                </script>
+                <% ratings.each do |rating| %>
+                  <div class="d-flex align-items-center mb-2">
+                    <p class="my-auto"><%= rating[:label] %></p>
+                    <div id="star_<%= rating[:score_type] %>_<%= comment.id %>"></div>
+                  </div>
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                      var elem = document.querySelector('#star_<%= rating[:score_type] %>_<%= comment.id %>');
+                      var opt = {
+                        score: "<%= comment[rating[:score_type]].present? ? comment[rating[:score_type]] : 0 %>",
+                        readOnly: true,
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                      };
+                      raty(elem, opt);
+                    });
+                  </script>
+                <% end %>
               </div>
               <hr>
 

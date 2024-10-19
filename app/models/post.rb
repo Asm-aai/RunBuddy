@@ -18,7 +18,9 @@ class Post < ApplicationRecord
   end
 
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    unless user.nil?
+      favorites.exists?(user_id: user.id)
+    end
   end
   # userがいいねしているか
 

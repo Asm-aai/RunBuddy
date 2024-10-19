@@ -1,3 +1,12 @@
+<% ratings = [
+  { label: "総合評価　　　　　　：", score_type: :total_star },
+  { label: "ドッグランの広さ　　：", score_type: :extent_star },
+  { label: "清潔さ　　　　　　　：", score_type: :clean_star },
+  { label: "アメニティの充実さ　：", score_type: :amenity_star },
+  { label: "安全性　　　　　　　：", score_type: :safety_star },
+  { label: "コストパフォーマンス：", score_type: :cost_star }
+] %>
+
 <div class="row my-5">
   <div class="col-md-10 mb-4 mx-auto">
     <h2 class="pb-4">レビュー投稿</h2>
@@ -5,52 +14,21 @@
       <%= form_with model: [post, comment] do |f| %>
 
         <div class="form-group" id="star">
-          <div class="d-flex align-items-center">
-            <p class="mt-4"><%= f.label :total_star, "総合評価　　　　　　：" %></p>
-            <%= f.hidden_field :total_star, id: :review_total_star, class: 'form-control' %>
-            <div id="comment_total_raty"></div>
-          </div>
-
-          <div class="d-flex align-items-center">
-            <p class="mt-4"><%= f.label :extent_star, "ドッグランの広さ　　：" %></p>
-            <%= f.hidden_field :extent_star, id: :review_extent_star, class: 'form-control' %>
-            <div id="comment_extent_raty"></div>
-          </div>
-
-          <div class="d-flex align-items-center mb-2">
-            <p class="mt-4"><%= f.label :clean_star, "清潔さ　　　　　　　：" %></p>
-            <%= f.hidden_field :clean_star, id: :review_clean_star, class: 'form-control' %>
-            <div id="comment_clean_raty"></div>
-          </div>
-
-          <div class="d-flex align-items-center mb-2">
-            <p class="mt-4"><%= f.label :amenity_star, "アメニティの充実さ　：" %></p>
-            <%= f.hidden_field :amenity_star, id: :review_amenity_star, class: 'form-control' %>
-            <div id="comment_amenity_raty"></div>
-          </div>
-
-          <div class="d-flex align-items-center mb-2">
-            <p class="mt-4"><%= f.label :safety_star, "安全性　　　　　　　：" %></p>
-            <%= f.hidden_field :safety_star, id: :review_safety_star, class: 'form-control' %>
-            <div id="comment_safety_raty"></div>
-          </div>
-
-          <div class="d-flex align-items-center mb-2">
-            <p class="mt-4"><%= f.label :cost_star, "コストパフォーマンス：" %></p>
-            <%= f.hidden_field :cost_star, id: :review_cost_star, class: 'form-control' %>
-            <div id="comment_cost_raty"></div>
-          </div>
+          <% ratings.each do |rating| %>
+            <div class="d-flex align-items-center mb-2">
+              <p class="mt-4"><%= f.label rating[:score_type], rating[:label] %></p>
+              <%= f.hidden_field rating[:score_type], id: "review_#{rating[:score_type]}", class: 'form-control' %>
+              <div id="comment_<%= rating[:score_type] %>_raty"></div>
+            </div>
+          <% end %>
         </div>
 
         <script>
           $(document).on('turbolinks:load', function() {
             let ratings = [
-              { id: '#comment_total_raty', scoreName: 'comment[total_star]' },
-              { id: '#comment_extent_raty', scoreName: 'comment[extent_star]' },
-              { id: '#comment_clean_raty', scoreName: 'comment[clean_star]' },
-              { id: '#comment_amenity_raty', scoreName: 'comment[amenity_star]' },
-              { id: '#comment_safety_raty', scoreName: 'comment[safety_star]' },
-              { id: '#comment_cost_raty', scoreName: 'comment[cost_star]' }
+              <% ratings.each do |rating| %>
+                { id: '#comment_<%= rating[:score_type] %>_raty', scoreName: 'comment[<%= rating[:score_type] %>]' },
+              <% end %>
             ];
 
             ratings.forEach(function(rating) {
@@ -77,5 +55,3 @@
     </div>
   </div>
 </div>
-
-<!--レビュー機能追加したら、レビュー項目入れて、コントローラーの仮データ削除-->
