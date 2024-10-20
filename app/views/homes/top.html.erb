@@ -18,9 +18,9 @@
           RunBuddyで、愛犬とのお出かけがもっと楽しく、もっと快適になりますよ！
         </h5>
         <div class="col-12 mx-auto mt-4">
-          <%= link_to 'ドッグラン一覧を見る', posts_path, class: 'btn btn-danger top2 w-25' %><br>
+          <%= link_to 'ドッグラン一覧を見る', posts_path, class: 'btn btn-danger top2 w-50' %><br>
           <% unless user_signed_in? || current_admin %>
-            <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-danger mt-3 top2 w-25", method: :post %>
+            <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-danger mt-3 top2 w-50", method: :post %>
             <p class="text-light">お試しの方はこちらから</p>
           <% end %>
         </div>

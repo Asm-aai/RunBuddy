@@ -28,6 +28,7 @@ class User::PostsController < UserApplicationController
   def index
     @posts = Post.all
     @url = posts_path
+    # @average_total_star = Comment.average(:total_star)
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)
