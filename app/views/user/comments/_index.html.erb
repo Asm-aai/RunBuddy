@@ -28,8 +28,10 @@
                     <div id="star_<%= rating[:score_type] %>_<%= comment.id %>"></div>
                   </div>
                   <script>
-                    document.addEventListener("DOMContentLoaded", function() {
+                    $(document).on('turbolinks:load', function() {
                       var elem = document.querySelector('#star_<%= rating[:score_type] %>_<%= comment.id %>');
+                      if (elem == null) return;
+                      elem.innerHTML = ""
                       var opt = {
                         score: "<%= comment[rating[:score_type]].present? ? comment[rating[:score_type]] : 0 %>",
                         readOnly: true,

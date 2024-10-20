@@ -24,4 +24,8 @@ class Post < ApplicationRecord
   end
   # userがいいねしているか
 
+  def average_total_star
+    (comments.average(:total_star) * 2).round / 2.0
+  end
+
 end

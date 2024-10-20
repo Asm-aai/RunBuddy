@@ -1,0 +1,18 @@
+  <!--card-->
+    <!--div id="star_%= average_total_star %>_%= post.id %>"></div>-->
+    <span id="star_average_<%= post.id %>"></span>
+  <script>
+    $(document).on('turbolinks:load', function() {
+      var elem = document.querySelector('#star_average_<%= post.id %>');
+      if (elem == null) return;
+      elem.innerHTML = ""
+      var opt = {
+        score: "<%= average_total_star.present? ? average_total_star : 0 %>",
+        readOnly: true,
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+      };
+      raty(elem, opt);
+    });
+  </script>
