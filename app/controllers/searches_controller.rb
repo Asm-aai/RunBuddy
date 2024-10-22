@@ -5,6 +5,7 @@ class SearchesController < ApplicationController
     @word = params[:word]
     @posts = Post.where("title LIKE ? OR introduction LIKE ?", "%#{@word}%", "%#{@word}%")
     @users = User.where("name LIKE ?", "%#{@word}%")
+    @tags = Tag.where("name LIKE ?", "%#{@word}%")
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)

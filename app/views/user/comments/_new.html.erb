@@ -10,50 +10,62 @@
 <div class="row my-5">
   <div class="col-md-10 mb-4 mx-auto">
     <h2 class="pb-4">レビュー投稿</h2>
-    <div class="card shadow-sm p-4">
-      <%= form_with model: [post, comment] do |f| %>
+    <% if post.comments.exists?(user_id: current_user.id) %>
+      <p>既に投稿済みです。</p>
+    <% else %>
 
-        <div class="form-group" id="star">
-          <% ratings.each do |rating| %>
-            <div class="d-flex align-items-center mb-2">
-              <p class="mt-3"><%= rating[:label] %></p>
-              <%= f.hidden_field rating[:score_type], id: "comment_review_#{rating[:score_type]}", class: 'form-control' %>
-              <div id="comment_<%= rating[:score_type] %>_raty"></div>
-            </div>
-          <% end %>
-        </div>
 
-        <script>
-          $(document).on('turbolinks:load', function() {
-            let ratings = [
-              <% ratings.each do |rating| %>
-                { id: '#comment_<%= rating[:score_type] %>_raty', scoreName: 'comment[<%= rating[:score_type] %>]' },
-              <% end %>
-            ];
+      <div class="card shadow-sm p-4">
+        <% if flash[:error] %>
+          <div class="alert alert-danger">
+            <h4>以下のエラーがあります：</h4>
+            <p><%= simple_format(flash[:error]) %></p>
+          </div>
+        <% end %>
 
-            ratings.forEach(function(rating) {
-              let elem = document.querySelector(rating.id);
-              if (elem == null) return;
-              
-              elem.innerHTML = ""
+        <%= form_with model: [post, comment], local: false do |f| %>
+          <div class="form-group" id="star">
+            <% ratings.each do |rating| %>
+              <div class="d-flex align-items-center mb-2">
+                <p class="mt-3"><%= rating[:label] %></p>
+                <%= f.hidden_field rating[:score_type], id: "comment_review_#{rating[:score_type]}", class: 'form-control' %>
+                <div id="comment_<%= rating[:score_type] %>_raty"></div>
+              </div>
+            <% end %>
+          </div>
 
-              let opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                scoreName: rating.scoreName
-              };
-              raty(elem, opt);
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let ratings = [
+                <% ratings.each do |rating| %>
+                  { id: '#comment_<%= rating[:score_type] %>_raty', scoreName: 'comment[<%= rating[:score_type] %>]' },
+                <% end %>
+              ];
+
+              ratings.forEach(function(rating) {
+                let elem = document.querySelector(rating.id);
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  scoreName: rating.scoreName
+                };
+                raty(elem, opt);
+              });
             });
-          });
-        </script>
+          </script>
 
-        <hr>
-        <div class="form-group pt-2">
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control", style: "width: 100%;" %>
-        </div>
+          <hr>
+          <div class="form-group pt-2">
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control", style: "width: 100%;", id: "comment_textarea" %>
+          </div>
 
-        <%= f.submit "送信", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

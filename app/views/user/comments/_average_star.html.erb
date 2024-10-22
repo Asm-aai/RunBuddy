@@ -1,6 +1,7 @@
-  <!--card-->
-    <!--div id="star_%= average_total_star %>_%= post.id %>"></div>-->
-    <span id="star_average_<%= post.id %>"></span>
+<% if average_total_star == 0 %>
+  <span>まだ評価がありません</span>
+<% else %>
+  <span id="star_average_<%= post.id %>"></span>
   <script>
     $(document).on('turbolinks:load', function() {
       var elem = document.querySelector('#star_average_<%= post.id %>');
@@ -16,3 +17,4 @@
       raty(elem, opt);
     });
   </script>
+<% end %>

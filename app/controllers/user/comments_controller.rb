@@ -10,8 +10,9 @@ class User::CommentsController < UserApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: 'コメントを投稿しました。'
     else
-      Rails.logger.error(@comment.errors.full_messages)
-      redirect_back(fallback_location: post_path(@post), alert: 'コメントを入力してください。')
+      flash[:error] = @comment.errors.full_messages.join("\n")
+      redirect_back(fallback_location: post_path(@post))
+      # render "user/posts/show"
     end
   end
 
@@ -21,8 +22,9 @@ class User::CommentsController < UserApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
     Comment.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id]), notice: 'コメントを削除しました。'
+    # redirect_to post_path(params[:post_id]), notice: 'コメントを削除しました。'
   end
 
   def edit

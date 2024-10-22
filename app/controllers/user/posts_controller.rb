@@ -26,9 +26,8 @@ class User::PostsController < UserApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.where(is_active: true)
     @url = posts_path
-    # @average_total_star = Comment.average(:total_star)
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)
@@ -43,7 +42,18 @@ class User::PostsController < UserApplicationController
 
   def tag
     @tag = Tag.find(params[:id])
-    @posts_only_tag = @tag.posts
+    @posts_only_tag = @tag.posts.where(is_active: true)
+
+    if params[:sort] == "created_at_asc"
+      @posts_only_tag = @posts_only_tag.order(created_at: :asc)
+    elsif params[:sort] == "created_at_desc"
+      @posts_only_tag = @posts_only_tag.order(created_at: :desc)
+    elsif params[:sort] == "favorited_desc"
+      @posts_only_tag = @posts_only_tag.left_joins(:favorites).group('posts.id').order('COUNT(favorites.id) DESC')
+    elsif params[:sort] == "comments_desc"
+      @posts_only_tag = @posts_only_tag.left_joins(:comments).group('posts.id').order('COUNT(comments.id) DESC')
+    end
+
   end
 
   def show
@@ -65,6 +75,17 @@ class User::PostsController < UserApplicationController
 
   def inactive_index
     @inactive_posts = Post.where(is_active: false)
+
+    if params[:sort] == "created_at_asc"
+      @inactive_posts = @inactive_posts.order(created_at: :asc)
+    elsif params[:sort] == "created_at_desc"
+      @inactive_posts = @inactive_posts.order(created_at: :desc)
+    elsif params[:sort] == "favorited_desc"
+      @inactive_posts = @inactive_posts.left_joins(:favorites).group('posts.id').order('COUNT(favorites.id) DESC')
+    elsif params[:sort] == "comments_desc"
+      @inactive_posts = @inactive_posts.left_joins(:comments).group('posts.id').order('COUNT(comments.id) DESC')
+    end
+
   end
 
   private
