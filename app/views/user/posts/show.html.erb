@@ -1,5 +1,9 @@
+
 <div class="container posts1">
   <%= render 'post_detail', post: @post %>
-  <%= render 'user/comments/index', post: @post, comment: @comment %>
+  <div id="comment_index">
+    <%= render 'user/comments/index', post: @post, comment: @comment %>
+  </div>
+  <!--非同期通信のため、id割振-->
   <%= render 'user/comments/new', post: @post, comment: @comment %>
 </div>

@@ -1,4 +1,4 @@
-<!--each使えるか検証-->
+<!--each使えるか検証→OK-->
 <% ratings = [
   { label: "総合評価　　　　　　：", score_type: :total_star },
   { label: "ドッグランの広さ　　：", score_type: :extent_star },
@@ -12,7 +12,9 @@
   <div class="col-md-10 mb-4 mx-auto">
     <h2>レビュー一覧</h2>
     <% if post.comments.any? %>
-      <p>レビュー数：<%= post.comments.count %></p>
+      <div id="comment_counter">
+        <p>レビュー数：<%= post.comments.count %></p>
+      </div>
       <% post.comments.each do |comment| %>
         <div class="card shadow-sm mt-4">
           <div class="card-body">
@@ -55,7 +57,7 @@
               <%= link_to '削除', admin_post_comment_path(post, comment), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger mx-4" %>
             <% elsif comment.user_id == current_user.id %>
               <%= link_to '編集', edit_post_comment_path(post, comment), class: "btn btn-success mx-4" %>
-              <%= link_to '削除', [post, comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger mx-4" %>
+              <%= link_to '削除', [post, comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger mx-4", remote: true %>
             <% end %>
           </div>
           <!--レビュー機能入れたら、右上にボタン設置させてみる-->
