@@ -18,6 +18,9 @@ olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|
   user.password = "password"
   user.password_confirmation = "password"
 end
+if olivia.errors.any?
+  puts olivia.errors.full_messages
+end
 
 james = User.find_or_create_by!(email: "james@example.com") do |user|
   user.name = "James"
