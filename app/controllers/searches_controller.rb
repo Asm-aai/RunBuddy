@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
 
   def search
     @word = params[:word]
-    @posts = Post.where("title LIKE ? OR introduction LIKE ?", "%#{@word}%", "%#{@word}%").page(params[:page])
+    @posts = Post.where("title LIKE ? OR introduction LIKE ? OR address LIKE ? OR hp LIKE ?", "%#{@word}%", "%#{@word}%", "%#{@word}%", "%#{@word}%").page(params[:page])
     @users = User.where("name LIKE ?", "%#{@word}%").page(params[:page])
     @tags = Tag.where("name LIKE ?", "%#{@word}%")
 

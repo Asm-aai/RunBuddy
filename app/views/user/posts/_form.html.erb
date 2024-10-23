@@ -4,7 +4,7 @@
       <div class="card shadow p-3 mb-5">
         <% if flash[:error] %>
           <div class="alert alert-danger">
-            <p>画像を選択してください。</p>
+            <p><%= simple_format(flash[:error]) %></p>
           </div>
         <% end %>
         <h1 class="text-center">
