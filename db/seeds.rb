@@ -32,33 +32,38 @@ end
 posts = [
   Post.find_or_create_by!(title: 'サンプル投稿タイトル 1') do |post|
     post.address = '住所 1丁目'
-    post.hp = 'https://example1.com'  # サンプルのURL
+    post.hp = 'https://example1.com'
     post.introduction = 'これはサンプル投稿の内容です。投稿番号 1 に関する情報です。'
-    post.user_id = 1
+    post.user_id = User.find_by(email: 'olivia@example.com').id
+    post.is_active = true  # 明示的にis_activeを設定
   end,
   Post.find_or_create_by!(title: 'サンプル投稿タイトル 2') do |post|
     post.address = '住所 2丁目'
     post.hp = 'https://example2.com'
     post.introduction = 'これはサンプル投稿の内容です。投稿番号 2 に関する情報です。'
-    post.user_id = 2
+    post.user_id = User.find_by(email: 'james@example.com').id
+    post.is_active = true
   end,
   Post.find_or_create_by!(title: 'サンプル投稿タイトル 3') do |post|
     post.address = '住所 3丁目'
     post.hp = 'https://example3.com'
     post.introduction = 'これはサンプル投稿の内容です。投稿番号 3 に関する情報です。'
-    post.user_id = 3
+    post.user_id = User.find_by(email: 'lucas@example.com').id
+    post.is_active = true
   end,
   Post.find_or_create_by!(title: 'サンプル投稿タイトル 4') do |post|
     post.address = '住所 4丁目'
     post.hp = 'https://example4.com'
     post.introduction = 'これはサンプル投稿の内容です。投稿番号 4 に関する情報です。'
-    post.user_id = 1
+    post.user_id = User.find_by(email: 'olivia@example.com').id
+    post.is_active = true
   end,
   Post.find_or_create_by!(title: 'サンプル投稿タイトル 5') do |post|
     post.address = '住所 5丁目'
     post.hp = 'https://example5.com'
     post.introduction = 'これはサンプル投稿の内容です。投稿番号 5 に関する情報です。'
-    post.user_id = 2
+    post.user_id = User.find_by(email: 'james@example.com').id
+    post.is_active = true
   end
 ]
 
