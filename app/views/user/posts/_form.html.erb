@@ -4,8 +4,7 @@
       <div class="card shadow p-3 mb-5">
         <% if flash[:error] %>
           <div class="alert alert-danger">
-            <h4>以下のエラーがあります：</h4>
-            <p><%= flash[:error] %></p>
+            <p>画像を選択してください。</p>
           </div>
         <% end %>
         <h1 class="text-center">
@@ -26,22 +25,23 @@
 
             <div class="form-group">
               <p>名称</p>
-              <%= f.text_field :title, class: 'form-control', placeholder: 'ドッグランの名前' %>
+              <%= f.text_field :title, class: 'form-control', placeholder: 'ドッグランの名前', required: true %>
+              <!--required：空欄で保存できない設定-->
             </div>
 
             <div class="form-group">
               <p>住所</p>
-              <%= f.text_field :address, class: 'form-control', placeholder: '例: 東京都千代田区丸の内１丁目' %>
+              <%= f.text_field :address, class: 'form-control', placeholder: '例: 東京都千代田区丸の内１丁目', required: true %>
             </div>
 
             <div class="form-group">
               <p>ホームページ</p>
-              <%= f.text_field :hp, class: 'form-control', placeholder: '例: https://runbuddy.com' %>
+              <%= f.text_field :hp, class: 'form-control', placeholder: '例: https://runbuddy.com', required: true %>
             </div>
 
             <div class="form-group">
               <p>紹介文</p>
-              <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。' %>
+              <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。', required: true %>
             </div>
 
             <div class="form-group mx-2">
@@ -79,7 +79,7 @@
                 <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
               <% end %>
             </div>
-            
+
           <% end %>
         </div>
       </div>

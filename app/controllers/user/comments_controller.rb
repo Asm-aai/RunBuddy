@@ -18,7 +18,7 @@ class User::CommentsController < UserApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.all
+    @comments = Comment.all.page(params[:page])
   end
 
   def destroy
@@ -41,7 +41,7 @@ class User::CommentsController < UserApplicationController
       flash[:notice] = "コメントが更新されました。"
       redirect_to post_path(@post)
     else
-      flash[:alert] = "コメントの更新に失敗しました。"
+      flash[:error] = @comment.errors.full_messages
       render :edit
     end
   end
