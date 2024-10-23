@@ -13,6 +13,7 @@ class User::PostsController < UserApplicationController
     if @post.save
       redirect_to @post, notice: '投稿が成功しました。'
     else
+      flash[:error] = @post.errors.full_messages.join("\n")
       render :new
     end
   end
@@ -26,8 +27,7 @@ class User::PostsController < UserApplicationController
   end
 
   def index
-    @posts = Post.where(is_active: true)
-    @url = posts_path
+    @posts = Post.where(is_active: true).page(params[:page])
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)
@@ -42,7 +42,7 @@ class User::PostsController < UserApplicationController
 
   def tag
     @tag = Tag.find(params[:id])
-    @posts_only_tag = @tag.posts.where(is_active: true)
+    @posts_only_tag = @tag.posts.where(is_active: true).page(params[:page])
 
     if params[:sort] == "created_at_asc"
       @posts_only_tag = @posts_only_tag.order(created_at: :asc)
@@ -59,6 +59,7 @@ class User::PostsController < UserApplicationController
   def show
     @post_user = @post.user
     @comment = Comment.new
+    @comments = @post.comments.page(params[:page])
   end
 
   def edit
@@ -74,7 +75,7 @@ class User::PostsController < UserApplicationController
   end
 
   def inactive_index
-    @inactive_posts = Post.where(is_active: false)
+    @inactive_posts = Post.where(is_active: false).page(params[:page])
 
     if params[:sort] == "created_at_asc"
       @inactive_posts = @inactive_posts.order(created_at: :asc)

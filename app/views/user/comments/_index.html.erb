@@ -11,11 +11,11 @@
 <div class="row mt-5">
   <div class="col-md-10 mb-4 mx-auto">
     <h2>レビュー一覧</h2>
-    <% if post.comments.any? %>
+    <% if comments.any? %>
       <div id="comment_counter">
-        <p>レビュー数：<%= post.comments.count %></p>
+        <p>レビュー数：<%= comments.count %></p>
       </div>
-      <% post.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <div class="card shadow-sm mt-4">
           <div class="card-body">
             <div class="card-title">
@@ -60,12 +60,14 @@
               <%= link_to '削除', [post, comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger mx-4", remote: true %>
             <% end %>
           </div>
-          <!--レビュー機能入れたら、右上にボタン設置させてみる-->
         </div>
       <% end %>
     <% else %>
       <p>まだレビューがありません。</p>
     <% end %>
   </div>
+</div>
+<div class="row mx-auto my-3">
+  <%= paginate comments, outer_window: 3 %>
 </div>
 <hr>

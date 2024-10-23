@@ -5,7 +5,7 @@ class UserApplicationController < ApplicationController
   layout 'application'
 
   def my_page
-    @my_posts = current_user.posts
+    @my_posts = current_user.posts.page(params[:page])
 
     if params[:sort] == "created_at_asc"
       @my_posts = @my_posts.order(created_at: :asc)
@@ -20,7 +20,7 @@ class UserApplicationController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page])
 
   end
 

@@ -8,21 +8,21 @@ ja:
         address: "住所"
         hp: "ホームページ"
         introduction: "紹介文"
+        image: "画像"
+      comment:
+        comment: "コメント"
+        total_star: "総合評価"
+        extent_star: "広さの評価"
+        clean_star: "清潔さの評価"
+        amenity_star: "アメニティの評価"
+        safety_star: "安全性の評価"
+        cost_star: "コストパフォーマンスの評価"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-    attributes:
-     comment:
-      comment: "コメント"
-      total_star: "総合評価"
-      extent_star: "広さの評価"
-      clean_star: "清潔さの評価"
-      amenity_star: "アメニティの評価"
-      safety_star: "安全性の評価"
-      cost_star: "コストパフォーマンスの評価"
   date:
     abbr_day_names:
     - 日
@@ -197,3 +197,10 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+      pagination:
+        first: '最初'
+        last: '最後'
+        previous: '前'
+        next: '次'
+        truncate: '...'
