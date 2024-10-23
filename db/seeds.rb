@@ -67,7 +67,7 @@ posts = [
   end
 ]
 
-[
+tags = [
   '大型犬向け',
   '中型犬向け',
   '小型犬向け',
@@ -82,6 +82,43 @@ posts = [
   'エリア分けあり',
   'プールあり',
   'アジリティ設備あり'
-].each do |tag_name|
+]
+tags.each do |tag_name|
   Tag.find_or_create_by!(name: tag_name)
 end
+
+
+comments = [
+  Comment.find_or_create_by!(comment: 'とても良いドッグランでした！また来たいです。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: olivia.id, post_id: posts[0].id),
+  Comment.find_or_create_by!(comment: 'スタッフが親切で、安心して遊ばせられました。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '3', user_id: james.id, post_id: posts[1].id),
+  Comment.find_or_create_by!(comment: '設備が整っていて、犬も楽しんでいました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '4', safety_star: '5', cost_star: '4', user_id: lucas.id, post_id: posts[2].id),
+  Comment.find_or_create_by!(comment: '混雑していましたが、楽しめました！', total_star: '4', extent_star: '3', clean_star: '4', amenity_star: '4', safety_star: '4', cost_star: '5', user_id: olivia.id, post_id: posts[3].id),
+  Comment.find_or_create_by!(comment: 'ドッグカフェの食べ物が美味しかったです！', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: james.id, post_id: posts[4].id),
+  Comment.find_or_create_by!(comment: '大型犬も安心して遊べました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '4', safety_star: '5', cost_star: '4', user_id: olivia.id, post_id: posts[0].id),
+  Comment.find_or_create_by!(comment: 'もっと広いエリアがあれば嬉しいです。', total_star: '3', extent_star: '4', clean_star: '3', amenity_star: '4', safety_star: '4', cost_star: '5', user_id: james.id, post_id: posts[1].id),
+  Comment.find_or_create_by!(comment: 'トイレがきれいで、便利でした。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: lucas.id, post_id: posts[2].id),
+  Comment.find_or_create_by!(comment: '犬が自由に遊べて嬉しいです。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: olivia.id, post_id: posts[3].id),
+  Comment.find_or_create_by!(comment: '大きなプールがあって、犬が楽しそうでした。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '4', safety_star: '5', cost_star: '4', user_id: james.id, post_id: posts[4].id),
+  Comment.find_or_create_by!(comment: 'しつけ教室があって、とても役立ちました。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: lucas.id, post_id: posts[0].id),
+  Comment.find_or_create_by!(comment: '料金が少し高めですが、価値があります。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '4', safety_star: '4', cost_star: '3', user_id: olivia.id, post_id: posts[1].id),
+  Comment.find_or_create_by!(comment: 'エリア分けがあり、安心して遊ばせられます。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: james.id, post_id: posts[2].id),
+  Comment.find_or_create_by!(comment: 'ベンチがたくさんあり、休憩しやすかったです。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '3', user_id: lucas.id, post_id: posts[3].id),
+  Comment.find_or_create_by!(comment: 'ゴミ箱が設置されていて、環境が良いです。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: olivia.id, post_id: posts[4].id),
+  Comment.find_or_create_by!(comment: '予約が必要ですが、スムーズに入れました。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '4', safety_star: '4', cost_star: '3', user_id: james.id, post_id: posts[0].id),
+  Comment.find_or_create_by!(comment: '犬が遊ぶのにとても良い場所です！', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: lucas.id, post_id: posts[1].id),
+  Comment.find_or_create_by!(comment: '中型犬向けに最適でした。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '4', safety_star: '4', cost_star: '4', user_id: olivia.id, post_id: posts[2].id),
+  Comment.find_or_create_by!(comment: '遊び場が充実していて、犬が楽しんでいました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: james.id, post_id: posts[3].id),
+  Comment.find_or_create_by!(comment: 'スタッフの対応がとても良かったです。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: lucas.id, post_id: posts[4].id),
+  Comment.find_or_create_by!(comment: 'ドッグカフェも利用しましたが、味も良かったです。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: olivia.id, post_id: posts[0].id),
+  Comment.find_or_create_by!(comment: '安全に遊べるエリアがあって安心しました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '4', safety_star: '5', cost_star: '4', user_id: james.id, post_id: posts[1].id),
+  Comment.find_or_create_by!(comment: '子供連れでも楽しめる場所です。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: lucas.id, post_id: posts[2].id),
+  Comment.find_or_create_by!(comment: '遊ぶ場所が広く、犬が満足していました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: olivia.id, post_id: posts[3].id),
+  Comment.find_or_create_by!(comment: '日陰があって、夏でも快適に過ごせました。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '3', user_id: james.id, post_id: posts[4].id),
+  Comment.find_or_create_by!(comment: 'エリアが分かれていて、安心して遊ばせられます。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: lucas.id, post_id: posts[0].id),
+  Comment.find_or_create_by!(comment: '何度も来ているお気に入りの場所です。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: olivia.id, post_id: posts[1].id),
+  Comment.find_or_create_by!(comment: '犬が大好きな場所で、毎週通っています。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '4', safety_star: '4', cost_star: '4', user_id: james.id, post_id: posts[2].id),
+  Comment.find_or_create_by!(comment: 'エリアが広くて、走り回れて嬉しいです。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: lucas.id, post_id: posts[3].id),
+  Comment.find_or_create_by!(comment: '清掃が行き届いていて、気持ちよく遊べます。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: olivia.id, post_id: posts[4].id)
+]
+
+comments.each(&:save)
