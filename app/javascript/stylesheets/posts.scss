@@ -2,15 +2,19 @@
   font-family: 'Mochiy Pop One', sans-serif;
   font-weight: 300;
   font-style: normal;
+
   p {
     font-size: 1.5rem;
+  }
+  .title1 {
+    background:linear-gradient(transparent 70%, #FFFF00 0%);
   }
 }
 
 @media screen and (max-width:992px) {
   .square-image{
-    width: 640px;
-    height: 640px;
+    width: 400px;
+    height: 300px;
     object-fit: cover;
   }
 }
@@ -41,5 +45,47 @@
     width: auto;
     height: auto;
     object-fit: contain;
+  }
+}
+
+@media (max-width: 576px) {
+  .table thead {
+    display: none;
+  }
+
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .table tbody td {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: 0;
+    position: relative;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .table tbody td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .posts1 {
+    font-size: 1rem !important; // 全体のフォントサイズ（必要に応じて変更）
+  }
+
+  .posts1 p {
+    font-size: 1rem; // p 要素のフォントサイズを変更
+  }
+
+  .posts1 .title1 {
+    font-size: 1.5rem !important; // title1 のフォントサイズを変更
   }
 }
