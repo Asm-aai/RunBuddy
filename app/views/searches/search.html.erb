@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h2 class="text-center mb-4">検索結果</h2>
+      <div style="border-bottom: 1rem solid #ffebcd; margin: 20px 0;"></div>
 
       <div class="my-5">
         <h3 class="mb-3">投稿検索一覧</h3>
@@ -13,24 +14,24 @@
               <%= sort.submit '並び替え', class: "btn btn-secondary btn-sm" %>
             <% end %>
           </div>
-          <table class="table table-striped text-center">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th></th>
-                <th>ドッグラン名</th>
-                <th>紹介文</th>
-                <th>コメント数</th>
-                <th>ブックマーク数</th>
+                <th class="no1">ドッグラン名</th>
+                <th class="no1">紹介文</th>
+                <th class="no1 text-center">コメント数</th>
+                <th class="no1 text-center">ブックマーク数</th>
               </tr>
             </thead>
             <tbody>
               <% @posts.each do |post| %>
                 <tr>
-                  <td><%= image_tag post.get_image, size: "100x100", class: 'img-thumbnail' %></td>
-                  <td><%= link_to post.title, post_path(post), class: 'text-primary' %></td>
-                  <td><span class="text-muted"> - <%= post.introduction %></span></td>
-                  <td><%= post.comments.count %></td>
-                  <td><%= post.favorites.count %></td>
+                  <td class="text-center"><%= image_tag post.get_image, size: "300x300", class: 'img-thumbnail' %></td>
+                  <td data-label="ドッグラン名：" class="pl-3"><%= link_to post.title, post_path(post), class: 'text-primary' %></td>
+                  <td class="pl-2"><span class="text-muted"> - <%= post.introduction %></span></td>
+                  <td data-label="コメント数　　：", class="text-center"><%= post.comments.count %></td>
+                  <td data-label="ブックマーク数：", class="text-center"><%= post.favorites.count %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -40,6 +41,7 @@
         <% end %>
       </div>
       <div class="my-5">
+        <div style="border-bottom: 1rem solid #ffebcd; margin: 20px 0;"></div>
         <h3>ユーザー検索一覧</h3>
         <% if @users.any? %>
           <table class="table table-striped text-center">
@@ -48,15 +50,15 @@
                 <th>ユーザー名</th>
                 <th>投稿数</th>
                 <th>コメント数</th>
-                <th>詳細リンク</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @users.each do |user| %>
                 <tr>
-                  <td><%= user.name %></td>
-                  <td><%= user.posts.count %></td>
-                  <td><%= user.favorites.count %></td>
+                  <td class="pl-2" data-label="ユーザー名："><%= user.name %></td>
+                  <td class="pl-2" data-label="投稿数　　："><%= user.posts.count %></td>
+                  <td class="pl-2" data-label="コメント数："><%= user.comments.count %></td>
                   <td>
                   <% if user_signed_in? %>
                     <%= link_to '詳細', user_path(user), class: 'btn btn-primary' %>
@@ -73,6 +75,7 @@
       </div>
 
       <div class="my-3">
+        <div style="border-bottom: 1rem solid #ffebcd; margin: 20px 0;"></div>
         <h3>タグ検索一覧</h3>
         <% if @tags.any? %>
 

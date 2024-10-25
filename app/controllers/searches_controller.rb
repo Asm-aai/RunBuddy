@@ -3,9 +3,10 @@ class SearchesController < ApplicationController
 
   def search
     @word = params[:word]
-    @posts = Post.where("title LIKE ? OR introduction LIKE ? OR address LIKE ? OR hp LIKE ?", "%#{@word}%", "%#{@word}%", "%#{@word}%", "%#{@word}%").page(params[:page])
-    @users = User.where("name LIKE ?", "%#{@word}%").page(params[:page])
+    @posts = Post.where("title LIKE :word OR introduction LIKE :word OR address LIKE :word OR hp LIKE :word", word: "%#{@word}%")
+    @users = User.where("name LIKE ?", "%#{@word}%")
     @tags = Tag.where("name LIKE ?", "%#{@word}%")
+
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)
