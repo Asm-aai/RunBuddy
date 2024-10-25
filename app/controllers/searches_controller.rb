@@ -16,6 +16,5 @@ class SearchesController < ApplicationController
     elsif params[:sort] == "comments_desc"
       @posts = @posts.left_joins(:comments).group('posts.id').order('COUNT(comments.id) DESC')
     end
-
   end
 end
