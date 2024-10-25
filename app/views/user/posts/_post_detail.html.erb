@@ -4,12 +4,12 @@
 
 <div class="row">
   <div class="col-md-6 d-flex justify-content-center">
-    <%= image_tag post.get_image, class: "img-thumbnail shadow-lg auto-image" %>
+    <%= image_tag post.get_image, class: "shadow-lg auto-image" %>
   </div>
   <div class="col-md-6 posts1 mt-10 my-auto">
     <p>
       <% post.tags.each do |tag| %>
-        <button type="button" class="btn btn-secondary btn-sm" disabled>
+        <button type="button" class="btn btn-secondary btn-sm my-2" disabled>
           <span><%= link_to tag.name, tag_posts_path(tag.id), class: "text-white" %></span>
         </button>
       <% end %>

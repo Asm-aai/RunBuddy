@@ -11,6 +11,9 @@
           <% if request.path.include?("my_page") %>
             <th>非公開投稿</th>
             <th>ブックマーク数</th>
+          <% elsif admin_signed_in? %>
+            <th>非公開投稿</th>
+            <th>ブックマーク数</th>
           <% end %>
         </tr>
       </thead>
@@ -21,6 +24,9 @@
           <td data-label="投稿数　　　　："><%= user.posts.count - user.posts.where(is_active: false).count %></td>
           <td data-label="コメント数　　："><%= user.comments.count %></td>
           <% if request.path.include?("my_page") %>
+            <td data-label="下書き投稿　　："><%= link_to user.posts.where(is_active: false).count, inactive_posts_path %></td>
+            <td data-label="ブックマーク数："><%= link_to user.favorites.count, favorites_posts_path %></td>
+          <% elsif admin_signed_in? %>
             <td data-label="下書き投稿　　："><%= link_to user.posts.where(is_active: false).count, inactive_posts_path %></td>
             <td data-label="ブックマーク数："><%= link_to user.favorites.count, favorites_posts_path %></td>
           <% end %>

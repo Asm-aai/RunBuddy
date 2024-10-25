@@ -28,6 +28,12 @@
 }
 
 
+.auto-image {
+  max-width: 100%; // 親要素に合わせて最大幅を100%に設定
+  height: auto; // 高さは自動調整
+  object-fit: contain; // 画像を切り抜かずに収める
+}
+
 @media screen and (max-width:992px) {
   .auto-image{
     max-width: 550px;
@@ -90,5 +96,4 @@
   }
 
 }
-
 
