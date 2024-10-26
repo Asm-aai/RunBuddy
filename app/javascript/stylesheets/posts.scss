@@ -95,5 +95,16 @@
     font-size: 1.5rem !important; // title1 のフォントサイズを変更
   }
 
+  .responsive-file-field {
+    font-size: 12px;
+  }
+
 }
 
+.new-img{
+  width: 600px;
+  object-fit: cover;
+  @media screen and (max-width: 768px) {
+    width: 250px;
+  }
+}
