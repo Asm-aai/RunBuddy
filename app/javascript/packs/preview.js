@@ -1,28 +1,37 @@
-// if (document.URL.match(/\/posts\/new/) || document.URL.match(/\/posts\/\d+\/edit/)) {
-if (document.URL.match(/new/)){
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
+  const imageInput = document.getElementById('imageInput');
+  const imagePreviewDiv = document.getElementById('new-image');
 
-    const createImageHTML = (blob) => {
-      const imageElement = document.getElementById('new-image');
+  const createImageHTML = (blob) => {
+    const blobImage = document.createElement('img');
+    blobImage.setAttribute('class', 'new-img img-fluid mt-2');
+    blobImage.setAttribute('src', blob);
+    imagePreviewDiv.appendChild(blobImage);
+  };
 
-      const blobImage = document.createElement('img');
-      blobImage.setAttribute('class', 'new-img')
-      blobImage.setAttribute('src', blob);
-
-      imageElement.appendChild(blobImage);
-    };
-
-    document.getElementById('post_image').addEventListener('change', (e) =>{
-
-      const imageContent = document.querySelector('img');
-      if (imageContent){
-        imageContent.remove();
-      }
+  if (document.URL.match(/new/)) {
+    imageInput.addEventListener('change', (e) => {
+      imagePreviewDiv.innerHTML = '';
 
       const file = e.target.files[0];
-      const blob = window.URL.createObjectURL(file);
-      createImageHTML(blob);
-
+      if (file) {
+        const blob = window.URL.createObjectURL(file);
+        createImageHTML(blob);
+      } else {
+        // 新しいファイルが選択されなかった場合、既存の内容を表示
+        imagePreviewDiv.innerHTML = '<p>ファイルが選択されていません</p>';
+      }
     });
-  });
-}
+
+  } else if (document.URL.match(/edit/)) {
+    imageInput.addEventListener('change', (e) => {
+      imagePreviewDiv.innerHTML = '';
+
+      const file = e.target.files[0];
+      if (file) {
+        const blob = window.URL.createObjectURL(file);
+        createImageHTML(blob);
+      }
+    });
+  }
+});
