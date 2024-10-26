@@ -13,7 +13,6 @@ class User::PostsController < UserApplicationController
     if @post.save
       redirect_to @post, notice: '投稿が成功しました。'
     else
-      logger.debug(params.inspect)
       flash[:error] = @post.errors.full_messages.join("\n")
       render :new
     end
@@ -23,6 +22,7 @@ class User::PostsController < UserApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: '投稿が更新されました。'
     else
+      flash[:error] = @post.errors.full_messages.join("\n")
       render :edit
     end
   end
