@@ -24,7 +24,10 @@
               <div id="new-image" class="mt-2">
                 <% if post.images.attached? %>
                   <p>現在のファイル</p>
-                  <%= image_tag post.images, class: "new-img img-fluid mt-2" %>
+                  <!--%= image_tag post.images, class: "new-img img-fluid mt-2" %>-->
+                  <% post.images.each do |image| %>
+                     <%= image_tag image, class: "card-img-top show-img" %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
