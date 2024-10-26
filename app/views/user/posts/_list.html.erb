@@ -16,7 +16,11 @@
     </div>
     <% posts.each do |post| %>
       <div class="card shadow mx-2 p-1 mb-4" id="post-<%= post.id %>" style="width: 70%;">
-        <%= image_tag post.get_image, class: "img-thumbnail card-img-top square-image" %>
+        <%= image_tag post.images.first, class: "img-thumbnail card-img-top square-image" %>
+
+    <!--% post.images.each do |image| %>-->
+    <!--   %= image_tag image, class: "card-img-top show-img" %>-->
+    <!--% end %>-->
 
         <div class="card-body">
           <p>

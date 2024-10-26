@@ -8,11 +8,13 @@ class User::PostsController < UserApplicationController
   end
 
   def create
+    Rails.logger.debug(params[:posts][:images])
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
       redirect_to @post, notice: '投稿が成功しました。'
     else
+      Rails.logger.debug(@post.errors.full_messages)
       flash[:error] = @post.errors.full_messages.join("\n")
       render :new
     end
@@ -91,7 +93,7 @@ class User::PostsController < UserApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :image, :is_active, tag_ids: [])
+    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :is_active, tag_ids: [], images: [])
   end
 
   def authorize_user

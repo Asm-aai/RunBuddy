@@ -36,7 +36,7 @@ posts = [
     post.introduction = '東京都心にある広々としたドッグラン。大型犬向けエリアや、アジリティ設備も充実しています。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '全力疾走.png')),
       filename: '全力疾走.png'
     )
@@ -47,7 +47,7 @@ posts = [
     post.introduction = '横浜市にある新しいドッグパーク。小型犬向けのエリアが人気で、予約が必要なプールも完備しています。'
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', 'プール.JPG')),
       filename: 'プール.JPG'
     )
@@ -58,7 +58,7 @@ posts = [
     post.introduction = '自然豊かなフィールドで、中型犬向けのエリアも広く確保されています。駐車場完備でアクセスも良好です。'
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', 'カフェ.JPG')),
       filename: 'カフェ.JPG'
     )
@@ -69,7 +69,7 @@ posts = [
     post.introduction = 'ドッグカフェと広いドッグランが併設された施設。トイレやベンチも完備されています。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '洗い場.JPG')),
       filename: '洗い場.JPG'
     )
@@ -80,7 +80,7 @@ posts = [
     post.introduction = '川沿いにあるドッグガーデンで、広い芝生エリアが特徴です。大型犬向けのエリアもあります。'
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '里.JPG')),
       filename: '里.JPG'
     )
@@ -91,7 +91,7 @@ posts = [
     post.introduction = '丘の上にあるドッグパークで、エリア分けがされており、どのサイズの犬も楽しめます。'
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '山の上.JPG')),
       filename: '山の上.JPG'
     )
@@ -102,7 +102,7 @@ posts = [
     post.introduction = '森林に囲まれた自然豊かなドッグラン。しつけ教室も定期的に開催されています。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '雪.JPG')),
       filename: '雪.JPG'
     )
@@ -113,7 +113,7 @@ posts = [
     post.introduction = 'ビーチに近いドッグフィールドで、海岸沿いの散歩も楽しめます。プール施設も完備。'
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '川.JPG')),
       filename: '川.JPG'
     )
@@ -124,7 +124,7 @@ posts = [
     post.introduction = '都市型のドッグパークで、アクセスも良好。ゴミ箱やベンチが設置されているので便利です。'
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '室内.JPG')),
       filename: '室内.JPG'
     )
@@ -135,7 +135,7 @@ posts = [
     post.introduction = 'サンセットが見える絶景のドッグガーデン。アメニティも充実しており、予約制のプールがあります。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '笑顔.JPG')),
       filename: '笑顔.JPG'
     )

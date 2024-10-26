@@ -4,7 +4,12 @@
 
 <div class="row">
   <div class="col-md-6 d-flex justify-content-center">
-    <%= image_tag post.get_image, class: "shadow-lg auto-image" %>
+    <%= image_tag post.images.first, class: "shadow-lg auto-image" %>
+
+    <!--% post.images.each do |image| %>-->
+    <!--   %= image_tag image, class: "card-img-top show-img" %>-->
+    <!--% end %>-->
+
   </div>
   <div class="col-md-6 posts1 mt-10 my-auto">
     <p>

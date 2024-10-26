@@ -20,11 +20,11 @@
 
             <div class="form-group">
               <p>画像</p>
-              <%= f.file_field :image, accept: "image/*", class: "responsive-file-field", id: "imageInput" %>
+              <%= f.file_field :images, name: 'posts[images][]', accept: "image/*", class: "responsive-file-field", id: "imageInput", multiple: true %>
               <div id="new-image" class="mt-2">
-                <% if post.image.attached? %>
+                <% if post.images.attached? %>
                   <p>現在のファイル</p>
-                  <%= image_tag post.image, class: "new-img img-fluid mt-2" %>
+                  <%= image_tag post.images, class: "new-img img-fluid mt-2" %>
                 <% end %>
               </div>
             </div>
