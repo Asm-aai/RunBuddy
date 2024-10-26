@@ -8,13 +8,12 @@ class User::PostsController < UserApplicationController
   end
 
   def create
-    Rails.logger.debug(params[:posts][:images])
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
       redirect_to @post, notice: '投稿が成功しました。'
     else
-      Rails.logger.debug(@post.errors.full_messages)
+      logger.debug(params.inspect)
       flash[:error] = @post.errors.full_messages.join("\n")
       render :new
     end
@@ -69,7 +68,7 @@ class User::PostsController < UserApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿が削除されました。'
   end
 
   def tag_index
