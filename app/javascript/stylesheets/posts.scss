@@ -11,30 +11,36 @@
   }
 }
 
+.square-image{
+  width: 600px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.auto-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.index-swiper {
+  max-width: 550px;
+  max-height: 640px;
+  width: auto;
+  height: auto;
+}
+
+.index-card {
+  width: 700px;
+  height: auto;
+}
+
 @media screen and (max-width:992px) {
   .square-image{
     width: 400px;
     height: 300px;
     object-fit: cover;
   }
-}
-
-@media screen and (max-width:576px) {
-  .square-image{
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-  }
-}
-
-
-.auto-image {
-  max-width: 100%; // 親要素に合わせて最大幅を100%に設定
-  height: auto; // 高さは自動調整
-  object-fit: contain; // 画像を切り抜かずに収める
-}
-
-@media screen and (max-width:992px) {
   .auto-image{
     max-width: 550px;
     max-height: 640px;
@@ -44,7 +50,24 @@
   }
 }
 
+
 @media screen and (max-width:576px) {
+  .index-swiper {
+    max-width: 350px;
+    max-height: 600px;
+    width: auto;
+    height: auto;
+  }
+  .index-card {
+    width: 350px;
+    height: auto;
+  }
+
+  .square-image{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
   .auto-image{
     max-width: 300px;
     max-height: 360px;
@@ -52,9 +75,7 @@
     height: auto;
     object-fit: contain;
   }
-}
 
-@media (max-width: 576px) {
   .table thead {
     display: none;
   }
@@ -81,7 +102,6 @@
   }
 }
 
-
 @media screen and (max-width: 768px) {
   .posts1 {
     font-size: 1rem !important; // 全体のフォントサイズ（必要に応じて変更）
@@ -98,7 +118,6 @@
   .responsive-file-field {
     font-size: 12px;
   }
-
 }
 
 .new-img{
@@ -113,4 +132,15 @@
 :root {
   --swiper-navigation-color: #ffffff;
   --swiper-pagination-color: #ffffff;
+}
+
+.swiper-container {
+  width: 100%; /* 幅を100%に */
+  height: auto; /* 高さを自動調整 */
+}
+
+.swiper-slide {
+  display: flex; /* スライドをフレックスボックスに */
+  justify-content: center; /* 中央寄せ */
+  align-items: center; /* 縦方向にも中央寄せ */
 }
