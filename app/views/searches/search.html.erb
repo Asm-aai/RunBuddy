@@ -28,7 +28,46 @@
             <tbody>
               <% @posts.each do |post| %>
                 <tr>
-                  <td class="text-center"><%= image_tag post.get_image, size: "300x300", class: 'img-thumbnail' %></td>
+                  <td class="text-center">
+                    <div class="swiper index-swiper" id="swiper-<%= post.id %>">
+
+                      <div class="swiper-wrapper"style="width: 300px; height: 300px;">
+                        <% post.images.each do |image| %>
+                          <div class="swiper-slide">
+                            <%= image_tag image, size: "300x300", class: 'img-thumbnail' %>
+                          </div>
+                        <% end %>
+                      </div>
+                      <div class="swiper-pagination"></div>
+                      <div class="swiper-button-prev"></div>
+                      <div class="swiper-button-next"></div>
+                    </div>
+                  </td>
+
+                  <script>
+                    document.addEventListener('turbolinks:load', function() {
+                        let swiper = new Swiper("#swiper-<%= post.id %>", {
+                        loop: true, // ループ
+                        speed: 3000, // 少しゆっくり(デフォルトは300)
+                        autoplay: { // 自動再生
+                          delay: 1000, // 1秒後に次のスライド
+                          disableOnInteraction: false, // 矢印をクリックしても自動再生を止めない
+                        },
+                        // ページネーション
+                        pagination: {
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        },
+                        // 前後の矢印
+                        navigation: {
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        },
+                      });
+                    });
+                  </script>
+
+
                   <td data-label="ドッグラン名：" class="pl-3"><%= link_to post.title, post_path(post), class: 'text-primary' %></td>
                   <td class="pl-2"><span class="text-muted"> - <%= post.introduction %></span></td>
                   <td data-label="コメント数　　：", class="text-center"><%= post.comments.count %></td>
@@ -37,6 +76,9 @@
               <% end %>
             </tbody>
           </table>
+          <div class="row my-3 mx-auto">
+            <%= paginate @posts, outer_window: 3 %>
+          </div>
         <% else %>
           <p class="text-muted">投稿が見つかりませんでした。</p>
         <% end %>

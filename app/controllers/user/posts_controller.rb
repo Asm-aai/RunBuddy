@@ -22,6 +22,7 @@ class User::PostsController < UserApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: '投稿が更新されました。'
     else
+      flash[:error] = @post.errors.full_messages.join("\n")
       render :edit
     end
   end
@@ -67,7 +68,7 @@ class User::PostsController < UserApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿が削除されました。'
   end
 
   def tag_index
@@ -91,7 +92,7 @@ class User::PostsController < UserApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :image, :is_active, tag_ids: [])
+    params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :is_active, tag_ids: [], images: [])
   end
 
   def authorize_user

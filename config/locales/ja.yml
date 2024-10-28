@@ -8,7 +8,7 @@ ja:
         address: "住所"
         hp: "ホームページ"
         introduction: "紹介文"
-        image: "画像"
+        images: "画像"
       comment:
         comment: "コメント"
         total_star: "総合評価"

@@ -7,27 +7,33 @@
             <p><%= simple_format(flash[:error]) %></p>
           </div>
         <% end %>
-        <h1 class="text-center">
+        <h1 class="text-center my-2">
           <% if request.path.include?("edit") %>
             投稿編集
           <% else %>
             新規投稿
           <% end %>
         </h1>
+        <hr>
 
         <div class="mb-4">
           <%= form_with model: post do |f| %>
 
             <div class="form-group">
-              <p>画像</p>
-              <%= f.file_field :image, accept: "image/*", class: "responsive-file-field", id: "imageInput" %>
-              <div id="new-image" class="mt-2">
-                <% if post.image.attached? %>
-                  <p>現在のファイル</p>
-                  <%= image_tag post.image, class: "new-img img-fluid mt-2" %>
+              <p>画像(5枚まで)</p>
+              <%= f.file_field :images, name: 'post[images][]', accept: "image/*", class: "responsive-file-field", id: "imageInput", multiple: true %>
+              <div id="new-image" class="my-4">
+                <% if post.images.attached? %>
+                  <h6><現在の画像></h6>
+                  <!--%= image_tag post.images, class: "new-img img-fluid mt-2" %>-->
+                  <% post.images.each do |image| %>
+                     <%= image_tag image, class: "card-img-top show-img" %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
+<!--選択した画像がリセットしないよう、実装予定-->
+<!--動画も投稿できるよう実装予定-->
 
             <div class="form-group">
               <p>名称</p>

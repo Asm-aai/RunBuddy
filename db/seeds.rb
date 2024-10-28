@@ -36,10 +36,16 @@ posts = [
     post.introduction = '東京都心にある広々としたドッグラン。大型犬向けエリアや、アジリティ設備も充実しています。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '全力疾走.png')),
-      filename: '全力疾走.png'
-    )
+    post.images.attach([
+      {
+        io: File.open(Rails.root.join('app', 'assets', 'images', '全力疾走.png')),
+        filename: '全力疾走.png'
+      },
+      {
+        io: File.open(Rails.root.join('app', 'assets', 'images', '笑顔.JPG')),
+        filename: '笑顔.JPG'
+      }
+    ])
   end,
   Post.find_or_create_by!(title: 'パピーズドッグパーク') do |post|
     post.address = '神奈川県横浜市エリア'
@@ -47,7 +53,7 @@ posts = [
     post.introduction = '横浜市にある新しいドッグパーク。小型犬向けのエリアが人気で、予約が必要なプールも完備しています。'
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', 'プール.JPG')),
       filename: 'プール.JPG'
     )
@@ -58,7 +64,7 @@ posts = [
     post.introduction = '自然豊かなフィールドで、中型犬向けのエリアも広く確保されています。駐車場完備でアクセスも良好です。'
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', 'カフェ.JPG')),
       filename: 'カフェ.JPG'
     )
@@ -69,10 +75,17 @@ posts = [
     post.introduction = 'ドッグカフェと広いドッグランが併設された施設。トイレやベンチも完備されています。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '洗い場.JPG')),
-      filename: '洗い場.JPG'
-    )
+    post.images.attach([
+      {
+        io: File.open(Rails.root.join('app', 'assets', 'images', '洗い場.JPG')),
+        filename: '洗い場.JPG'
+      },
+      {
+        io: File.open(Rails.root.join('app', 'assets', 'images', '室内.JPG')),
+        filename: '室内.JPG'
+      }
+    ])
+
   end,
   Post.find_or_create_by!(title: 'リバーサイドドッグガーデン') do |post|
     post.address = '大阪府大阪市エリア'
@@ -80,7 +93,7 @@ posts = [
     post.introduction = '川沿いにあるドッグガーデンで、広い芝生エリアが特徴です。大型犬向けのエリアもあります。'
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '里.JPG')),
       filename: '里.JPG'
     )
@@ -91,7 +104,7 @@ posts = [
     post.introduction = '丘の上にあるドッグパークで、エリア分けがされており、どのサイズの犬も楽しめます。'
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '山の上.JPG')),
       filename: '山の上.JPG'
     )
@@ -102,7 +115,7 @@ posts = [
     post.introduction = '森林に囲まれた自然豊かなドッグラン。しつけ教室も定期的に開催されています。'
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '雪.JPG')),
       filename: '雪.JPG'
     )
@@ -113,33 +126,11 @@ posts = [
     post.introduction = 'ビーチに近いドッグフィールドで、海岸沿いの散歩も楽しめます。プール施設も完備。'
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
-    post.image.attach(
+    post.images.attach(
       io: File.open(Rails.root.join('app', 'assets', 'images', '川.JPG')),
       filename: '川.JPG'
     )
   end,
-  Post.find_or_create_by!(title: 'アーバンドッグパーク') do |post|
-    post.address = '愛知県名古屋市エリア'
-    post.hp = 'https://example-dogpark9.com'
-    post.introduction = '都市型のドッグパークで、アクセスも良好。ゴミ箱やベンチが設置されているので便利です。'
-    post.user_id = User.find_by(email: 'lucas@example.com').id
-    post.is_active = true
-    post.image.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '室内.JPG')),
-      filename: '室内.JPG'
-    )
-  end,
-  Post.find_or_create_by!(title: 'サンセットドッグガーデン') do |post|
-    post.address = '福岡県福岡市エリア'
-    post.hp = 'https://example-doggarden10.com'
-    post.introduction = 'サンセットが見える絶景のドッグガーデン。アメニティも充実しており、予約制のプールがあります。'
-    post.user_id = User.find_by(email: 'olivia@example.com').id
-    post.is_active = true
-    post.image.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '笑顔.JPG')),
-      filename: '笑顔.JPG'
-    )
-  end
 ]
 
 tags = [
@@ -163,7 +154,7 @@ tags.each do |tag_name|
 end
 
 posts.each do |post|
-  random_tags = tags.sample(rand(2..3))
+  random_tags = tags.sample(rand(5..7))
   post.tags = random_tags.map { |tag_name| Tag.find_or_create_by!(name: tag_name) }
 end
 
@@ -192,12 +183,7 @@ comments = [
   Comment.find_or_create_by!(comment: '安全に遊べるエリアがあって安心しました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '4', safety_star: '5', cost_star: '4', user_id: '1', post_id: '8'),
   Comment.find_or_create_by!(comment: '子供連れでも楽しめる場所です。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: '2', post_id: '8'),
   Comment.find_or_create_by!(comment: '遊ぶ場所が広く、犬が満足していました。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: '3', post_id: '8'),
-  Comment.find_or_create_by!(comment: '日陰があって、夏でも快適に過ごせました。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '3', user_id: '1', post_id: '8'),
-  Comment.find_or_create_by!(comment: 'エリアが分かれていて、安心して遊ばせられます。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: '2', post_id: '9'),
-  Comment.find_or_create_by!(comment: '何度も来ているお気に入りの場所です。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: '3', post_id: '9'),
-  Comment.find_or_create_by!(comment: '犬が大好きな場所で、毎週通っています。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '4', safety_star: '4', cost_star: '4', user_id: '1', post_id: '9'),
-  Comment.find_or_create_by!(comment: 'エリアが広くて、走り回れて嬉しいです。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '5', user_id: '2', post_id: '9'),
-  Comment.find_or_create_by!(comment: '清掃が行き届いていて、気持ちよく遊べます。', total_star: '5', extent_star: '5', clean_star: '5', amenity_star: '5', safety_star: '5', cost_star: '4', user_id: '3', post_id: '10')
+  Comment.find_or_create_by!(comment: '日陰があって、夏でも快適に過ごせました。', total_star: '4', extent_star: '4', clean_star: '4', amenity_star: '5', safety_star: '5', cost_star: '3', user_id: '1', post_id: '8')
 ]
 
 comments.each(&:save)
