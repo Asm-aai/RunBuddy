@@ -1,7 +1,7 @@
 <div class="row col-md-12">
   <div class="col-md-3">
     <h3 class="ml-2">目次</h3>
-    <div class="card p-3 mx-2 mb-2">
+    <div class="card p-2 mb-2">
       <% posts.each do |post| %>
         <h6><%= link_to post.title, "#post-#{post.id}", class: "d-block mb-2" %></h6>
       <% end %>
@@ -58,7 +58,7 @@
         <div class="card-body">
           <p>
             <% post.tags.each do |tag| %>
-              <button type="button" class="btn btn-secondary btn-sm" disabled>
+              <button type="button" class="btn btn-secondary btn-sm mb-1" disabled>
                 <span><%= link_to tag.name, tag_posts_path(tag.id), class: "text-white" %></span>
               </button>
             <% end %>

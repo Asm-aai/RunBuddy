@@ -14,7 +14,7 @@ class User::FavoritesController < UserApplicationController
   end
 
   def index
-    @posts = Post.joins(:favorites).where(favorites: { user_id: current_user.id })
+    @posts = Post.joins(:favorites).where(favorites: { user_id: current_user.id }).page(params[:page])
 
     if params[:sort] == "created_at_asc"
       @posts = @posts.order(created_at: :asc)
