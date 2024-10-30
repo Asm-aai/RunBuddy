@@ -101,6 +101,12 @@
     font-weight: bold;
     margin-right: 10px;
   }
+
+  :root {
+    --swiper-navigation-color: #000 !important;
+    --swiper-pagination-color: #000 !important;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -131,8 +137,8 @@
 
 
 :root {
-  --swiper-navigation-color: #808080;
-  --swiper-pagination-color: #808080;
+  --swiper-navigation-color: #ffffff;
+  --swiper-pagination-color: #ffffff;
 }
 
 .swiper-container {

@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "user/sessions#guest_sign_in"
   end
 
-  devise_for :admin, skip: [:passwords, :registrations], controllers: {
+  devise_scope :admin do
+    delete 'admin/logout', to: 'devise/sessions#destroy', as: :destroy_admin_session
+  end
+
+  devise_for :admin, skip: [:session, :passwords, :registrations], controllers: {
     sessions: 'admin/sessions',
   }
   # 管理者アカウントの追加を行う場合、「:registrations」は外す

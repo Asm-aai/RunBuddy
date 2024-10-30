@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', () => {
+$(function(){
   const imageInput = document.getElementById('imageInput');
   const imagePreviewDiv = document.getElementById('new-image');
 

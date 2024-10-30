@@ -33,8 +33,7 @@
         </div>
 
         <script>
-          document.addEventListener('turbolinks:load', function() {
-              let swiper = new Swiper("#swiper-<%= post.id %>", {
+              swiper = new Swiper("#swiper-<%= post.id %>", {
               loop: true, // ループ
               speed: 3000, // 少しゆっくり(デフォルトは300)
               autoplay: { // 自動再生
@@ -52,7 +51,6 @@
                 prevEl: ".swiper-button-prev",
               },
             });
-          });
         </script>
 
         <div class="card-body">

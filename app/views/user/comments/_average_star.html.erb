@@ -3,9 +3,8 @@
 <% else %>
   <span id="star_average_<%= post.id %>"></span>
   <script>
-    $(document).on('turbolinks:load', function() {
       var elem = document.querySelector('#star_average_<%= post.id %>');
-      if (elem == null) return;
+      if (elem != null) {
       elem.innerHTML = ""
       var opt = {
         score: "<%= average_total_star.present? ? average_total_star : 0 %>",
@@ -15,6 +14,6 @@
         starHalf: "<%= asset_path('star-half.png') %>",
       };
       raty(elem, opt);
-    });
+      }
   </script>
 <% end %>

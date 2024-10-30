@@ -30,18 +30,17 @@
                     <div id="star_<%= rating[:score_type] %>_<%= comment.id %>"></div>
                   </div>
                   <script>
-                    $(document).on('turbolinks:load', function() {
                       var elem = document.querySelector('#star_<%= rating[:score_type] %>_<%= comment.id %>');
-                      if (elem == null) return;
-                      elem.innerHTML = ""
-                      var opt = {
-                        score: "<%= comment[rating[:score_type]].present? ? comment[rating[:score_type]] : 0 %>",
-                        readOnly: true,
-                        starOn: "<%= asset_path('star-on.png') %>",
-                        starOff: "<%= asset_path('star-off.png') %>",
-                      };
-                      raty(elem, opt);
-                    });
+                      if (elem != null) {
+                        elem.innerHTML = ""
+                        var opt = {
+                          score: "<%= comment[rating[:score_type]].present? ? comment[rating[:score_type]] : 0 %>",
+                          readOnly: true,
+                          starOn: "<%= asset_path('star-on.png') %>",
+                          starOff: "<%= asset_path('star-off.png') %>",
+                        };
+                        raty(elem, opt);
+                      }
                   </script>
                 <% end %>
               </div>
@@ -69,6 +68,7 @@
 </div>
 <div class="row my-3 justify-content-center">
   <div class="col-auto">
+    <div id="flash-message"></div>
     <%= paginate comments, outer_window: 3 %>
   </div>
 </div>

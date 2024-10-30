@@ -18,12 +18,14 @@ class User::CommentsController < UserApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.all.page(params[:page])
+
   end
 
   def destroy
     @post = Post.find(params[:post_id])
+    @comments = @post.comments.page(params[:page])
     Comment.find(params[:id]).destroy
+    flash[:notice] = 'コメントを削除しました'
     # redirect_to post_path(params[:post_id]), notice: 'コメントを削除しました。'
   end
 

@@ -1,1 +1,8 @@
-$('#comment_index').html("<%= j(render 'user/comments/index', post: @post) %>");
+$('#comment_index').html("<%= j(render 'user/comments/index', post: @post, comments: @comments) %>");
+
+$("#flash-message").html("<%= j flash[:notice] %>");
+
+
+setTimeout(function() {
+  $("#flash-message").fadeOut("slow");
+}, 3000);

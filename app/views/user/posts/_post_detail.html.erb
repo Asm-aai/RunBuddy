@@ -20,8 +20,8 @@
     </div>
 
     <script>
-      document.addEventListener('turbolinks:load', function() {
-        const swiper = new Swiper(".swiper", {
+      window.onload=function(){
+        let swiper = new Swiper(".swiper", {
           loop: true, // ループ
           speed: 3000, // 少しゆっくり(デフォルトは300)
           autoplay: { // 自動再生
@@ -39,8 +39,7 @@
             prevEl: ".swiper-button-prev",
           },
         });
-      });
-
+      };
     </script>
 
   </div>
