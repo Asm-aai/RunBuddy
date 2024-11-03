@@ -18,7 +18,6 @@ class User::CommentsController < UserApplicationController
 
   def show
     @post = Post.find(params[:id])
-
   end
 
   def destroy
