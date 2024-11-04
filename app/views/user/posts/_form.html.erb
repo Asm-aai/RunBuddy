@@ -22,6 +22,7 @@
             <div class="form-group">
               <p>画像(5枚まで)</p>
               <%= f.file_field :images, name: 'post[images][]', accept: "image/*", class: "responsive-file-field", id: "imageInput", multiple: true %>
+              <p><button type="button" class="btn btn-info btn-sm" id="analyzeImageButton">画像からタグを自動選択する</button></p>
               <div id="new-image" class="my-4">
                 <% if post.images.attached? %>
                   <h6><現在の画像></h6>
