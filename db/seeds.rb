@@ -134,20 +134,20 @@ posts = [
 ]
 
 tags = [
-  { name: '大型犬向け', english_word: 'large dog, big dog, for large dogs' },
-  { name: '中型犬向け', english_word: 'medium dog, for medium dogs' },
-  { name: '小型犬向け', english_word: 'small dog, for small dogs' },
-  { name: '駐車場完備', english_word: 'parking, parking available, car park' },
-  { name: '公共交通機関でアクセス可能', english_word: 'public transport, accessible by public transport, transit' },
-  { name: 'トイレ完備', english_word: 'toilets, restroom, bathroom available' },
-  { name: 'ベンチあり', english_word: 'bench, seating, bench available' },
-  { name: 'ゴミ箱設置', english_word: 'trash can, garbage, waste bin' },
-  { name: '予約必要', english_word: 'reservation required, booking, reserve' },
-  { name: 'しつけ教室あり', english_word: 'training class, obedience school, dog training' },
-  { name: 'ドッグカフェあり', english_word: 'dog cafe, pet cafe, cafe for dogs' },
-  { name: 'エリア分けあり', english_word: 'area division, separate area, partitioned area' },
-  { name: 'プールあり', english_word: 'pool, swimming pool, water pool' },
-  { name: 'アジリティ設備あり', english_word: 'agility equipment, obstacle course, agility course' }
+  { name: '大型犬向け', english_word: 'large dog/big dog/for large dogs' },
+  { name: '中型犬向け', english_word: 'medium dog/for medium dogs' },
+  { name: '小型犬向け', english_word: 'small dog/for small dogs' },
+  { name: '駐車場完備', english_word: 'parking/parking available/car park' },
+  { name: '公共交通機関でアクセス可能', english_word: 'public transport/accessible by public transport/transit' },
+  { name: 'トイレ完備', english_word: 'toilets, restroom/bathroom available' },
+  { name: 'ベンチあり', english_word: 'bench/eating/bench available' },
+  { name: 'ゴミ箱設置', english_word: 'trash can/garbage/waste bin' },
+  { name: '予約必要', english_word: 'reservation required/booking, reserve' },
+  { name: 'しつけ教室あり', english_word: 'training class/obedience school' },
+  { name: 'ドッグカフェあり', english_word: 'shop/cafe' },
+  { name: 'エリア分けあり', english_word: 'area division/separate area/partitioned area' },
+  { name: 'プールあり', english_word: 'pool/swimming pool/water pool' },
+  { name: 'アジリティ設備あり', english_word: 'agility equipment/obstacle course/agility course' }
 ]
 
 tags.each do |tag|
@@ -158,7 +158,9 @@ end
 
 posts.each do |post|
   random_tags = tags.sample(rand(5..7))
-  post.tags = random_tags.map { |tag_name| Tag.find_or_create_by!(name: tag_name) }
+  post.tags = random_tags.map { |tag_data| Tag.find_or_create_by!(name: tag_data[:name]) do |t|
+    t.english_word = tag_data[:english_word]
+  end }
 end
 
 comments = [

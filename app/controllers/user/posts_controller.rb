@@ -50,10 +50,20 @@ class User::PostsController < UserApplicationController
     # 解析結果からタグIDを取得する処理（API連携の部分は省略）
     tag_ids = fetch_tags_from_results(results)
 
-    tag_ids # 取得したタグIDを返す
+    render json: { tag_ids: tag_ids }
   rescue Google::Cloud::Error => e
     Rails.logger.error("画像認識エラー: #{e.message}")
-    []
+    render json: { error: "Image analysis failed." }, status: :unprocessable_entity
+  end
+
+  def fetch_tags_from_results(results)
+    tag_ids = []
+    results.each do |label|
+      matching_tags = Tag.where("english_word LIKE ?", "%#{label}%")
+      tag_ids.concat(matching_tags.pluck(:id)) if matching_tags.any?
+    end
+    tag_ids.uniq
+    # 重複を排除
   end
 
   def index
