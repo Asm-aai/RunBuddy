@@ -3,11 +3,24 @@
     <div class="col-md-12 my-3">
       <h2 class="text-center">タグ編集</h2>
       <%= form_with model: @tag, url: admin_tag_path(@tag), method: :patch do |tag| %>
-        <div class="form-group d-flex justify-content-center my-4">
-          <%= tag.label :name, 'タグ名', class: "mt-1 mr-3" %>
-          <%= tag.text_field :name, class: 'form-control', style: "width: 50%", placeholder: 'タグ名を入力' %>
+        <div class="form-group row my-4">
+          <div class="col-md-3 text-center">
+            <%= tag.label :name, 'タグ名', class: "mt-1" %>
+          </div>
+          <div class="col-md-8">
+            <%= tag.text_field :name, class: 'form-control', placeholder: 'タグ名を入力' %>
+          </div>
         </div>
-        <div class="text-center">
+        <div class="form-group row my-4">
+          <div class="col-md-3 text-center">
+            <%= tag.label :english_word, '画像認証ワード', class: "mt-1" %>
+          </div>
+          <div class="col-md-8">
+            <%= tag.text_field :english_word, class: 'form-control', placeholder: '画像認証ワードを入力' %>
+          </div>
+        </div>
+
+        <div class="text-center my-4">
           <%= tag.submit '保存', class: 'btn btn-primary' %>
         </div>
       <% end %>
