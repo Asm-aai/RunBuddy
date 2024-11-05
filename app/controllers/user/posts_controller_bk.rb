@@ -10,7 +10,8 @@ class User::PostsController < UserApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if create_or_update_post_with_analysis(@post, @post.images)
+    if @post.save
+      analyze_images(@post.images)
       redirect_to @post, notice: '投稿が成功しました。'
     else
       flash[:error] = @post.errors.full_messages.join("\n")
@@ -19,41 +20,13 @@ class User::PostsController < UserApplicationController
   end
 
   def update
-    if create_or_update_post_with_analysis(@post, @post.images)
+    if @post.update(post_params)
+      analyze_images(@post.images)
       redirect_to post_path(@post), notice: '投稿が更新されました。'
     else
       flash[:error] = @post.errors.full_messages.join("\n")
       render :edit
     end
-  end
-
-
-  def process_image_analysis
-    # Google Cloud Vision API の設定
-    require "google/cloud/vision"
-    image_annotator = Google::Cloud::Vision.image_annotator do |config|
-      config.credentials = ENV["GOOGLE_API_KEY"]
-    end
-
-    # APIに画像を解析リクエスト送信
-    results = []
-    images = []
-    params[:images].each do |image|
-      pp image.tempfile.path
-      images.push(image.tempfile.path)
-    end
-    images.each do |image|
-      response = image_annotator.label_detection(image: image) # 例としてlabel_detectionを使用
-      results += response.responses.flat_map(&:label_annotations).map(&:description)
-    end
-    pp results
-    # 解析結果からタグIDを取得する処理（API連携の部分は省略）
-    tag_ids = fetch_tags_from_results(results)
-
-    tag_ids # 取得したタグIDを返す
-  rescue Google::Cloud::Error => e
-    Rails.logger.error("画像認識エラー: #{e.message}")
-    []
   end
 
   def index
@@ -123,13 +96,30 @@ class User::PostsController < UserApplicationController
   def post_params
     params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :is_active, tag_ids: [], images: [])
   end
+  
+  
+  def process_image_analysis(images)
+    # Google Cloud Vision APIのセットアップ
+    protect_from_forgery
+    # CSRFのエラー対策
+    require "google/cloud/vision"
+    image_annotator  = Google::Cloud::Vision.image_annotator do | config |
+      config.credentials = ENV["GOOGLE_API_KEY"]
+    end
+    
+    # 画像認証APIへのリクエストを準備
+    return if images.blank?
 
+    form_data = { images: images }
+      
+    response = RestClient.post('https://vision.googleapis.com/v1/images:annotate?key=#{ENV["GOOGLE_API_KEY"]}', form_data)
 
-  # 投稿作成・更新時に使用する
-  def create_or_update_post_with_analysis(post, images)
-    tag_ids = process_image_analysis(images)
-    post.tag_ids = tag_ids if tag_ids.present?
-    post.save
+    # 取得したタグIDを選択
+    tag_ids = JSON.parse(response.body)['tag_ids'] # APIのレスポンスからタグIDを取得
+    @post.tag_ids = tag_ids # 取得したタグIDを投稿に関連付ける
+    @post.save # タグの更新を保存
+  rescue RestClient::ExceptionWithResponse => e
+    Rails.logger.error("画像認証エラー: #{e.response}")
   end
 
   def authorize_user

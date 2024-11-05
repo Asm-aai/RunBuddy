@@ -68,3 +68,5 @@ gem "net-imap"
 gem "enum_help"
 
 gem 'kaminari','~> 1.2.1'
+
+gem 'google-cloud-vision'
