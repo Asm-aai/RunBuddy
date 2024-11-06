@@ -2,6 +2,7 @@ $(function(){
   const imageInput = document.getElementById('imageInput');
   const imagePreviewDiv = document.getElementById('new-image');
   const analyzeButton = document.getElementById('analyzeImageButton');
+  const analyzeIntroductionButton = document.getElementById('analyzeIntroductionButton')
 
   const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -69,6 +70,34 @@ $(function(){
       .then(data => {
         // 取得したタグIDで自動的にチェックボックスを選択
         selectTagsBasedOnAnalysis(data.tag_ids); // タグIDを使用して選択
+      })
+      .catch(error => {
+        console.error('エラー:', error);
+      });
+    });
+
+    analyzeIntroductionButton.addEventListener('click', () => {
+      const introductionText = post_introduction.value;
+
+      if (introductionText.trim() === '') {
+        alert('紹介文を入力してください。');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('post[introduction]', introductionText);
+
+      fetch('/posts/process_introduction_analysis', {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': csrfToken
+        },
+        body: formData
+      })
+
+      .then(response => response.json())
+      .then(data => {
+        selectTagsBasedOnAnalysis(data.tag_ids);
       })
       .catch(error => {
         console.error('エラー:', error);

@@ -20,7 +20,7 @@
           <%= form_with model: post do |f| %>
 
             <div class="form-group">
-              <p>画像(5枚まで)</p>
+              <p>画像(5枚まで/.jpeg .pngのみ対応)</p>
               <%= f.file_field :images, name: 'post[images][]', accept: "image/*", class: "responsive-file-field", id: "imageInput", multiple: true %>
 
               <div id="new-image" class="my-4">
@@ -33,7 +33,7 @@
                 <% end %>
               </div>
             </div>
-            <p><button type="button" class="btn btn-info btn-sm" id="analyzeImageButton">画像からタグを自動選択する</button></p>
+            <p><button type="button" class="btn btn-info btn-sm" id="analyzeImageButton">画像からタグを自動選択</button></p>
 <!--選択した画像がリセットしないよう、実装予定-->
 <!--動画も投稿できるよう実装予定-->
 
@@ -56,6 +56,7 @@
             <div class="form-group">
               <p>紹介文</p>
               <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。', required: true %>
+              <p><button type="button" class="btn btn-info btn-sm" id="analyzeIntroductionButton">紹介文からタグを自動選択</button></p>
             </div>
 
             <div class="form-group mx-2">

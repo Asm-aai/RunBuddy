@@ -10,6 +10,7 @@ class User::PostsController < UserApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+
     if @post.save
       redirect_to @post, notice: '投稿が成功しました。'
     else
@@ -56,6 +57,28 @@ class User::PostsController < UserApplicationController
     render json: { error: "Image analysis failed." }, status: :unprocessable_entity
   end
 
+  def process_introduction_analysis
+    tag_ids = []
+    introduction_text = params[:post][:introduction]
+
+    # タグのnameがintroduction_textに含まれるかを部分一致で検索
+    Tag.all.each do |tag|
+      tag_name = tag.name
+
+      # タグ名を意味的に分割して、紹介文に一致するか確認
+      tag_name.scan(/([一-龯々]+|[ァ-ヴー]+|[A-Za-z0-9]+|[、。])/).each do |match|
+        pp match
+        if introduction_text.include?(match[0])
+          tag_ids << tag.id
+          break  # 一度一致すれば、そのタグを追加して次のタグへ
+        end
+      end
+    end
+
+    tag_ids.uniq!
+    render json: { tag_ids: tag_ids }
+  end
+
   def fetch_tags_from_results(results)
     tag_ids = []
     results.each do |label|
@@ -65,6 +88,21 @@ class User::PostsController < UserApplicationController
     tag_ids.uniq
     # 重複を排除
   end
+
+  # def fetch_tags_from_introduction(results)
+  #   tag_ids = []
+  #   introduction_text = params[:post][:introduction]
+
+  #   # タグのnameがintroduction_textに含まれるかを部分一致で検索
+  #   Tag.all.each do |tag|
+  #     if introduction_text.include?(tag.name) # 紹介文内にtag.nameが含まれているか確認
+  #       tag_ids << tag.id
+  #     end
+  #   end
+
+  #   tag_ids.uniq!
+  #   render json: { tag_ids: tag_ids }
+  # end
 
   def index
     @posts = Post.where(is_active: true).page(params[:page])
@@ -133,13 +171,6 @@ class User::PostsController < UserApplicationController
   def post_params
     params.require(:post).permit(:title, :address, :hp, :introduction, :user_id, :is_active, tag_ids: [], images: [])
   end
-
-
-  # 投稿作成・更新時に使用する
-  # def create_or_update_post_with_analysis(post, images)
-  #   tag_ids = process_image_analysis
-  #   post.save
-  # end
 
   def authorize_user
     unless @post.user_id == current_user.id

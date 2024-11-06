@@ -33,6 +33,7 @@ Rails.application.routes.draw do
         get 'inactive', to: 'posts#inactive_index'
         get 'favorites', to: 'favorites#index'
         post :process_image_analysis
+        post :process_introduction_analysis
       end
     end
   end
