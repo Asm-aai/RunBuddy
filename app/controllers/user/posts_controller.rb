@@ -38,7 +38,7 @@ class User::PostsController < UserApplicationController
     # APIに画像を解析リクエスト送信
     results = []
     images = []
-    params[:images].each do |image|
+    params[:post][:images].each do |image|
       pp image.tempfile.path
       images.push(image.tempfile.path)
     end
