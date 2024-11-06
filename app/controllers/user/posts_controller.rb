@@ -137,7 +137,7 @@ class User::PostsController < UserApplicationController
 
   # 投稿作成・更新時に使用する
   def create_or_update_post_with_analysis(post, images)
-    tag_ids = process_image_analysis(images)
+    tag_ids = process_image_analysis
     post.tag_ids = tag_ids if tag_ids.present?
     post.save
   end
