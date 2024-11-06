@@ -8,7 +8,9 @@
             <div class="card h-100">
               <div class="card-body d-flex flex-column justify-content-between">
                 <h5 class="card-title text-truncate"><%= tag.name %></h5>
-                <span>[<%= tag.english_word %>]</span>
+                <% if current_admin %>
+                  <span>[<%= tag.english_word %>]</span>
+                <% end %>
                 <span class="mb-2">(投稿数：<%= tag.posts.count %>)</span>
                 <div class="mt-auto">
                   <% if current_admin %>
