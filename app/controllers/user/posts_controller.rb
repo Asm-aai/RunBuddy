@@ -10,7 +10,7 @@ class User::PostsController < UserApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if create_or_update_post_with_analysis(@post, @post.images)
+    if @post.save
       redirect_to @post, notice: '投稿が成功しました。'
     else
       flash[:error] = @post.errors.full_messages.join("\n")
@@ -19,7 +19,7 @@ class User::PostsController < UserApplicationController
   end
 
   def update
-    if create_or_update_post_with_analysis(@post, @post.images)
+    if @post.save
       redirect_to post_path(@post), notice: '投稿が更新されました。'
     else
       flash[:error] = @post.errors.full_messages.join("\n")
@@ -136,11 +136,10 @@ class User::PostsController < UserApplicationController
 
 
   # 投稿作成・更新時に使用する
-  def create_or_update_post_with_analysis(post, images)
-    tag_ids = process_image_analysis
-    post.tag_ids = tag_ids if tag_ids.present?
-    post.save
-  end
+  # def create_or_update_post_with_analysis(post, images)
+  #   tag_ids = process_image_analysis
+  #   post.save
+  # end
 
   def authorize_user
     unless @post.user_id == current_user.id

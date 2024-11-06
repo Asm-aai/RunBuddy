@@ -54,7 +54,7 @@ $(function(){
 
       const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
-        formData.append('images[]', files[i]);
+        formData.append('post[images][]', files[i]);
       }
 
       // 画像認証APIを呼び出す
