@@ -89,21 +89,6 @@ class User::PostsController < UserApplicationController
     # 重複を排除
   end
 
-  # def fetch_tags_from_introduction(results)
-  #   tag_ids = []
-  #   introduction_text = params[:post][:introduction]
-
-  #   # タグのnameがintroduction_textに含まれるかを部分一致で検索
-  #   Tag.all.each do |tag|
-  #     if introduction_text.include?(tag.name) # 紹介文内にtag.nameが含まれているか確認
-  #       tag_ids << tag.id
-  #     end
-  #   end
-
-  #   tag_ids.uniq!
-  #   render json: { tag_ids: tag_ids }
-  # end
-
   def index
     @posts = Post.where(is_active: true).page(params[:page])
 
