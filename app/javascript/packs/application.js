@@ -25,3 +25,11 @@ window.raty = function(elem,opt) {
 }
 
 import './preview'
+
+$(function() {
+  $('#btn-top').on('click',function(e){
+    $('body,html').animate({
+      scrollTop:0
+    },800);
+  });
+});
