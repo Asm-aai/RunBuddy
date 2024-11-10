@@ -10,7 +10,7 @@
   <div class="col-md-9">
     <div class='w-100 my-2 text-center'>
       <%= form_with url: url, method: :get do |sort| %>
-        <%= sort.select :sort, options_for_select([['投稿順(古)', 'created_at_asc'], ['投稿順(新)', 'created_at_desc'], ['ブックマーク順', 'favorited_desc'], ['コメント件数順', 'comments_desc']], params[:sort]) %>
+        <%= sort.select :sort, options_for_select([['投稿順(古)', 'created_at_asc'], ['投稿順(新)', 'created_at_desc'], ['ブックマーク順', 'favorited_desc'], ['コメント件数順', 'comments_desc'],['総合評価順(高)', 'star_at_desc']], params[:sort]) %>
         <%= sort.submit '並び替え', class: "btn btn-secondary btn-sm" %>
       <% end %>
     </div>

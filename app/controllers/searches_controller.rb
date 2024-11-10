@@ -15,6 +15,9 @@ class SearchesController < ApplicationController
       @posts = @posts.left_joins(:favorites).group('posts.id').order('COUNT(favorites.id) DESC')
     elsif params[:sort] == "comments_desc"
       @posts = @posts.left_joins(:comments).group('posts.id').order('COUNT(comments.id) DESC')
+    elsif params[:sort] == "star_at_desc"
+      # @posts = @posts.order(average_total_star: :desc)
+      @posts = @posts.left_joins(:comments).group('posts.id').reorder(Arel.sql('COALESCE(AVG(comments.total_star), 0) DESC'))
     end
   end
 end

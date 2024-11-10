@@ -10,7 +10,7 @@
 
           <div class='w-100 mb-4 text-center'>
             <%= form_with url: search_path, method: :get do |sort| %>
-              <%= sort.select :sort, options_for_select([['投稿順(古)', 'created_at_asc'], ['投稿順(新)', 'created_at_desc'], ['ブックマーク順', 'favorited_desc'], ['コメント件数順', 'comments_desc']], params[:sort]) %>
+              <%= sort.select :sort, options_for_select([['投稿順(古)', 'created_at_asc'], ['投稿順(新)', 'created_at_desc'], ['ブックマーク順', 'favorited_desc'], ['コメント件数順', 'comments_desc'],['総合評価順(高)', 'star_at_desc']], params[:sort]) %>
               <%= sort.hidden_field :word, value: @word %>
               <%= sort.submit '並び替え', class: "btn btn-secondary btn-sm" %>
             <% end %>
@@ -23,6 +23,7 @@
                 <th class="no1">紹介文</th>
                 <th class="no1 text-center">コメント数</th>
                 <th class="no1 text-center">ブックマーク数</th>
+                <th class="no1 text-center">平均総合評価</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +71,13 @@
                   <td class="pl-2"><span class="text-muted"> - <%= post.introduction %></span></td>
                   <td data-label="コメント数　　：", class="text-center"><%= post.comments.count %></td>
                   <td data-label="ブックマーク数：", class="text-center"><%= post.favorites.count %></td>
+                  <td data-label="ブックマーク数：", class="text-center">
+                    <% if post.comments.any? %>
+                      <%= post.comments.average(:total_star).to_f.round(1) %>
+                    <% else %>
+                    -
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
