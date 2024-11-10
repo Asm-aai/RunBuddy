@@ -6,6 +6,7 @@
         <thead class="text-center">
           <tr>
             <th scope="col">ID</th>
+            <th scope="col">登録日</th>
             <th scope="col">顧客名</th>
             <th scope="col">メールアドレス</th>
             <th>投稿数</th>
@@ -16,11 +17,12 @@
         <tbody class="text-center">
           <% @user.each do |user| %>
             <tr>
-              <td><%= user.id %></td>
-              <td><%= user.name %></td>
-              <td><%= user.email %></td>
-              <td><%= user.posts.count %></td>
-              <td><%= user.comments.count %></td>
+              <td data-label="ID　　　　　　："><%= user.id %></td>
+              <td data-label="登録日　　　　："><%= user.created_at.strftime("%Y年%m月%d日") %></td>
+              <td data-label="ユーザー名　　："><%= user.name %></td>
+              <td data-label="メールアドレス："><%= user.email %></td>
+              <td data-label="投稿数　　　　："><%= user.posts.count %></td>
+              <td data-label="コメント数　　："><%= user.comments.count %></td>
               <td><%= link_to "詳細", admin_user_path(user), class: "btn btn-primary" %></td>
             </tr>
           <% end %>
