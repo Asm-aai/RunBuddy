@@ -20,7 +20,7 @@
           <%= form_with model: post do |f| %>
 
             <div class="form-group">
-              <p>画像(5枚まで/.jpeg .pngのみ対応)</p>
+              <p>画像<span class="text-danger">*</span>(5枚まで/.jpeg .pngのみ対応)</p>
               <%= f.file_field :images, name: 'post[images][]', accept: "image/*", class: "responsive-file-field", id: "imageInput", multiple: true %>
 
               <div id="new-image" class="my-4">
@@ -38,23 +38,23 @@
 <!--動画も投稿できるよう実装予定-->
 
             <div class="form-group">
-              <p>名称</p>
+              <p>名称<span class="text-danger">*</span></p>
               <%= f.text_field :title, class: 'form-control', placeholder: 'ドッグランの名前', required: true %>
               <!--required：空欄で保存できない設定-->
             </div>
 
             <div class="form-group">
-              <p>住所</p>
+              <p>住所<span class="text-danger">*</span></p>
               <%= f.text_field :address, class: 'form-control', placeholder: '例: 東京都千代田区丸の内１丁目', required: true %>
             </div>
 
             <div class="form-group">
-              <p>ホームページ</p>
+              <p>ホームページ<span class="text-danger">*</span></p>
               <%= f.text_field :hp, class: 'form-control', placeholder: '例: https://runbuddy.com', required: true %>
             </div>
 
             <div class="form-group">
-              <p>紹介文</p>
+              <p>紹介文<span class="text-danger">*</span></p>
               <%= f.text_area :introduction, class: 'form-control', rows: 5, placeholder: '例: このドッグランには全犬種が楽しめるプールがあります。暑い夏の日には、犬たちが水遊びをしてリフレッシュできる理想的な場所です。大型犬も小型犬も安心して遊べる環境が整っています。', required: true %>
               <p><button type="button" class="btn btn-info btn-sm" id="analyzeIntroductionButton">紹介文からタグを自動選択</button></p>
             </div>
@@ -73,7 +73,7 @@
               </div>
 
               <div class="form-group mt-2">
-                <p>公開/非公開</p>
+                <p>公開/非公開<span class="text-danger">*</span></p>
                 <div class="form-check form-check-inline">
                   <%= f.radio_button :is_active, true, { class: "form-check-input", id: "inlineRadio1" } %>
                   <%= f.label :is_active, "公開", value: true, class: "form-check-label", for: "inlineRadio1" %>

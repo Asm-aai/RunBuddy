@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :user do
+    get 'contacts/new'
+    get 'contacts/confirm'
+    get 'contacts/done'
+  end
   devise_for :users, controllers: {
     sessions: 'user/sessions',
     registrations: 'user/registrations',
@@ -34,6 +39,14 @@ Rails.application.routes.draw do
         get 'favorites', to: 'favorites#index'
         post :process_image_analysis
         post :process_introduction_analysis
+      end
+    end
+    resources :contacts, only: [:new, :create] do
+      collection do
+        get 'confirm'
+        post 'confirm'
+        post 'back'
+        get 'done'
       end
     end
   end
