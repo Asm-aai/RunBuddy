@@ -1,11 +1,20 @@
 <div class="row col-md-12">
   <div class="col-md-3">
     <h3 class="ml-2">目次</h3>
-    <div class="card p-2 mb-2">
-      <% posts.each do |post| %>
-        <h6><%= link_to post.title, "#post-#{post.id}", class: "d-block mb-2" %></h6>
+
+
+    <div class="card p-3 shadow-lg rounded-3">
+      <% posts.each_with_index do |post, index| %>
+          <h5 class="card-title">
+            <%= link_to post.title, "#post-#{post.id}", class: "text-dark" %>
+          </h5>
+        <% unless index == posts.length - 1 %>
+          <hr><!-- 最後の投稿には区切り線を表示しない -->
+        <% end %>
       <% end %>
     </div>
+
+
   </div>
   <div class="col-md-9">
     <div class='w-100 my-2 text-center'>
@@ -18,7 +27,7 @@
     <% posts.each do |post| %>
       <div class="card shadow mx-2 p-1 mb-4 index-card d-flex justify-content-center" id="post-<%= post.id %>">
 
-        <div class="swiper index-swiper" id="swiper-<%= post.id %>">
+        <div class="swiper index-swiper pt-3" id="swiper-<%= post.id %>">
 
           <div class="swiper-wrapper">
             <% post.images.each do |image| %>
