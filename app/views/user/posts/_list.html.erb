@@ -84,9 +84,9 @@
           <p>平均総合評価：<%= render 'user/comments/average_star', average_total_star: post.average_total_star, post: post %></p>
 
           <% if user_signed_in? %>
-            <%= link_to "詳細", post_path(post.id, return_to: request.fullpath), class: "btn btn-primary" %>
+            <%= link_to "詳しく見る", post_path(post.id, return_to: request.fullpath), class: "btn btn-primary" %>
           <% else %>
-            <%= link_to "詳細", admin_post_path(post.id, return_to: request.fullpath), class: "btn btn-primary" %>
+            <%= link_to "詳しく見る", admin_post_path(post.id, return_to: request.fullpath), class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
