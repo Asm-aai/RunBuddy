@@ -33,18 +33,22 @@
 <br>・旅行先や外出先で良いドッグランを見つけたい時
 ​
 ## 設計書
-「後ほど作成予定」
+【ER図】
+![RunBuddy_ER図 drawio](https://github.com/user-attachments/assets/2cade9c7-ce6b-4573-8f0c-a5340766949b)
+
+【UIFlows】
+![ポートフォリオ制作_UIFlows_ drawio](https://github.com/user-attachments/assets/86ec4984-e7a3-482b-8fad-de331f812422)
+
 ​
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux 2023
+- 環境： AWS EC2インスタンス (t2.micro)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-**Rails version:** 6.1.7.8
-<br>
-**Ruby version:** ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+- **Rails version：** 6.1.7.8
+- **Ruby version：** ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
 ​
 ## 使用素材
 著作権を考慮し、架空のデータを扱う予定です。
