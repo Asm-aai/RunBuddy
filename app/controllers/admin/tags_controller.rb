@@ -30,11 +30,6 @@ def update
   old_name = @tag.name
   new_name = tag_params[:name]
 
-  if Tag.exists?(name: new_name)
-    flash.now[:alert] = 'このタグ名は既に存在します。'
-    render :edit and return
-  end
-
   if @tag.update(tag_params)
     redirect_to admin_tags_path, notice: 'タグが更新されました。'
   else
@@ -51,7 +46,7 @@ end
 
   private
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name, :english_word)
   end
 
   def set_tag
