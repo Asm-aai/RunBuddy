@@ -20,7 +20,7 @@ class User::PostsController < UserApplicationController
   end
 
   def update
-    if @post.save
+    if @post.update(post_params)
       redirect_to post_path(@post), notice: '投稿が更新されました。'
     else
       flash[:error] = @post.errors.full_messages.join("\n")
