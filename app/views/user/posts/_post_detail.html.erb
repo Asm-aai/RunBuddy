@@ -54,8 +54,10 @@
     <p><i class="fa-solid fa-marker"></i> <strong>名称：</strong> <%= post.title %></p>
     <hr>
     <p><i class="fas fa-map-marker-alt"></i> <strong>住所：</strong> <%= post.address %></p>
+    <small class="text-muted">※実際の情報と異なる可能性があります。</small>
     <hr>
-    <p><i class="fas fa-link text-primary"></i><a href="<%= post.hp %>" target="_blank"><%= post.hp %></a></p>
+    <p><i class="fas fa-link"></i> <a href="<%= post.hp %>" target="_blank"><%= post.hp %></a></p>
+    <small class="text-muted">※実際の情報と異なる可能性があります。</small>
     <hr>
     <p><i class="fas fa-info-circle"></i> <strong>紹介文：</strong> <%= post.introduction %></p>
     <hr>
@@ -74,7 +76,9 @@
     <hr>
     <p>
       <i class="fa-solid fa-star"></i> <strong>平均総合評価：<%= render 'user/comments/average_star', average_total_star: post.average_total_star, post: post %></strong>
-      </p>
+    </p>
+    <hr>
+    <p><i class="fa-solid fa-calendar"></i> 投稿日：<%= post.created_at.strftime("%Y/%m/%d") %></p>
     <hr>
 
     <p>

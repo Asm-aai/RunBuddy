@@ -22,7 +22,6 @@
               <p>投稿者：<%= link_to comment.user.name, user_path(post.user) %></p>
               <hr>
 
-
               <div class="form-group">
                 <% ratings.each do |rating| %>
                   <div class="d-flex align-items-center mb-2">
@@ -48,7 +47,7 @@
 
 
               <p class="card-text"><%= comment.comment %></p>
-                <small class="text-muted"> - 投稿日：<%= comment.created_at.strftime("%Y/%m/%d") %></small>
+              <small class="text-muted"> - 投稿日：<%= comment.created_at.strftime("%Y/%m/%d") %></small>
             </div>
           </div>
           <div class="pb-3">
