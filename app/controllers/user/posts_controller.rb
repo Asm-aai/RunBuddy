@@ -128,6 +128,11 @@ class User::PostsController < UserApplicationController
     @post_user = @post.user
     @comment = Comment.new
     @comments = @post.comments.page(params[:page])
+    if (@post.is_active == false) && (@post.user != current_user)
+      respond_to do |format|
+        format.html { redirect_to posts_path, notice: 'このページにはアクセスできません' }
+      end
+    end
   end
 
   def edit

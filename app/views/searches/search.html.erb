@@ -66,11 +66,11 @@
                     });
                   </script>
 
-                  <td data-label="ドッグラン名：" class="pl-3"><%= link_to post.title, post_path(post), class: 'text-primary' %></td>
-                  <td class="pl-2"><span class="text-muted"> - <%= post.introduction %></span></td>
-                  <td data-label="コメント数　　：", class="text-center"><%= post.comments.count %></td>
-                  <td data-label="ブックマーク数：", class="text-center"><%= post.favorites.count %></td>
-                  <td data-label="ブックマーク数：", class="text-center">
+                  <td data-label="ドッグラン名：" class="pl-3 align-middle"><%= link_to post.title, post_path(post), class: 'text-primary' %></td>
+                  <td class="pl-2 align-middle"><span class="text-muted"> - <%= post.introduction %></span></td>
+                  <td data-label="コメント数　　：", class="text-center align-middle"><%= post.comments.count %></td>
+                  <td data-label="ブックマーク数：", class="text-center align-middle"><%= post.favorites.count %></td>
+                  <td data-label="平均総合評価：", class="text-center align-middle">
                     <% if post.comments.any? %>
                       <%= post.comments.average(:total_star).to_f.round(1) %>
                     <% else %>
