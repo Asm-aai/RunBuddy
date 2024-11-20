@@ -59,7 +59,10 @@
     <p><i class="fas fa-link"></i> <a href="<%= post.hp %>" target="_blank"><%= post.hp %></a></p>
     <small class="text-muted">※実際の情報と異なる可能性があります。</small>
     <hr>
-    <p><i class="fas fa-info-circle"></i> <strong>紹介文：</strong> <%= post.introduction %></p>
+    <p>
+      <i class="fas fa-info-circle"></i> <strong>紹介文：</strong>
+      <%= sanitize(post.introduction).gsub(/\r\n|\r|\n/, '<br>').html_safe %>
+    </p>
     <hr>
     <p><i class="fa-solid fa-user"></i> <strong>投稿者：
     <% if user_signed_in? %>
