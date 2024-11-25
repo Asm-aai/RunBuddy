@@ -15,15 +15,15 @@ end
 users = [
   User.find_or_create_by!(email: "lucas@example.com") do |user|
     user.name = "Lucas"
-    user.password = "password"
+    user.password = ENV['USER_PASSWORD']
   end,
   User.find_or_create_by!(email: "james@example.com") do |user|
     user.name = "James"
-    user.password = "password"
+    user.password = ENV['USER_PASSWORD']
   end,
   User.find_or_create_by!(email: "olivia@example.com") do |user|
     user.name = "Olivia"
-    user.password = "password"
+    user.password = ENV['USER_PASSWORD']
   end
   ]
 
@@ -42,8 +42,8 @@ posts = [
         filename: '全力疾走.png'
       },
       {
-        io: File.open(Rails.root.join('app', 'assets', 'images', '笑顔.JPG')),
-        filename: '笑顔.JPG'
+        io: File.open(Rails.root.join('app', 'assets', 'images', '笑顔.jpg')),
+        filename: '笑顔.jpg'
       }
     ])
   end,
@@ -54,8 +54,8 @@ posts = [
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
     post.images.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', 'プール.JPG')),
-      filename: 'プール.JPG'
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'プール.jpg')),
+      filename: 'プール.jpg'
     )
   end,
   Post.find_or_create_by!(title: 'グリーンドッグフィールド') do |post|
@@ -65,8 +65,8 @@ posts = [
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
     post.images.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', 'カフェ.JPG')),
-      filename: 'カフェ.JPG'
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'カフェ.jpg')),
+      filename: 'カフェ.jpg'
     )
   end,
   Post.find_or_create_by!(title: 'おしゃれドッグカフェ＆ラン') do |post|
@@ -77,12 +77,12 @@ posts = [
     post.is_active = true
     post.images.attach([
       {
-        io: File.open(Rails.root.join('app', 'assets', 'images', '洗い場.JPG')),
-        filename: '洗い場.JPG'
+        io: File.open(Rails.root.join('app', 'assets', 'images', '洗い場.jpg')),
+        filename: '洗い場.jpg'
       },
       {
-        io: File.open(Rails.root.join('app', 'assets', 'images', '室内.JPG')),
-        filename: '室内.JPG'
+        io: File.open(Rails.root.join('app', 'assets', 'images', '室内.jpg')),
+        filename: '室内.jpg'
       }
     ])
 
@@ -94,8 +94,8 @@ posts = [
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
     post.images.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '里.JPG')),
-      filename: '里.JPG'
+      io: File.open(Rails.root.join('app', 'assets', 'images', '里.jpg')),
+      filename: '里.jpg'
     )
   end,
   Post.find_or_create_by!(title: 'ヒルサイドドッグパーク') do |post|
@@ -105,8 +105,8 @@ posts = [
     post.user_id = User.find_by(email: 'lucas@example.com').id
     post.is_active = true
     post.images.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '山の上.JPG')),
-      filename: '山の上.JPG'
+      io: File.open(Rails.root.join('app', 'assets', 'images', '山の上.jpg')),
+      filename: '山の上.jpg'
     )
   end,
   Post.find_or_create_by!(title: 'フォレストドッグラン') do |post|
@@ -116,8 +116,8 @@ posts = [
     post.user_id = User.find_by(email: 'olivia@example.com').id
     post.is_active = true
     post.images.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '雪.JPG')),
-      filename: '雪.JPG'
+      io: File.open(Rails.root.join('app', 'assets', 'images', '雪.jpg')),
+      filename: '雪.jpg'
     )
   end,
   Post.find_or_create_by!(title: 'ビーチサイドドッグフィールド') do |post|
@@ -127,8 +127,8 @@ posts = [
     post.user_id = User.find_by(email: 'james@example.com').id
     post.is_active = true
     post.images.attach(
-      io: File.open(Rails.root.join('app', 'assets', 'images', '川.JPG')),
-      filename: '川.JPG'
+      io: File.open(Rails.root.join('app', 'assets', 'images', '川.jpg')),
+      filename: '川.jpg'
     )
   end,
 ]
